@@ -11,7 +11,7 @@ source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="alanpeabody"
+ZSH_THEME="robbyrussell" #alanpeabody
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -92,7 +92,7 @@ source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -108,9 +108,9 @@ source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
  fcd() {
    cd "$(find -type d | fzf)"
  }
-# open() {
-#    xdg-open "$(find -type f | fzf)"
-#}
+ open() {
+    xdg-open "$(find -type f | fzf -e)"
+}
 alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
 
 #Clipboard stuff
@@ -124,49 +124,50 @@ alias cout="xclip -selection clipboard -o"
 bindkey -v              # Enable vi mode
 setopt prompt_subst     # Allow variables inside prompt
 
-# Mode symbols
-VI_INS="$"
-VI_CMD=" "
-#VI_INS="λ"
-#VI_CMD="μ"
-VI_MODE=$VI_INS         # Default
-
-# Update mode symbol when mode changes
-function zle-keymap-select {
-  [[ $KEYMAP == vicmd ]] && VI_MODE=$VI_CMD || VI_MODE=$VI_INS
-  zle reset-prompt
-}
-zle -N zle-keymap-select
-
-# Reset to insert mode after hitting Enter
-function zle-line-finish {  VI_MODE=$VI_INS }
-zle -N zle-line-finish
-
-# Also reset after Ctrl+C
-TRAPINT() {
-  VI_MODE=$VI_INS
-  return $((128 + $1))
-}
-
-# Git branch function
-git_branch() {
-  local branch
-  branch=$(git symbolic-ref --short HEAD 2>/dev/null)
-  [[ -n $branch ]] && echo "%{$fg_bold[white]%}(${branch})%{$reset_color%}"
-# [[ -n $branch ]] && echo "on %{$fg[magenta]%}${branch}%{$reset_color%}"
-}
-
-#LEFT PROMPT
-# Colors (Zsh-safe)
-local mode='%{$fg_bold[blue]%}${VI_MODE}%{$reset_color%}'
-#local pwd='%{$fg_bold[blue]%}%~%{$reset_color%}'
-local git='$(git_branch)'
-#local prompt_char='$'
-
-#FINAL PROMPT
-#PROMPT="${pwd} (${git})${mode} "
-PROMPT=" %{$fg_bold[blue]%}%c%{$reset_color%} ${git}${mode} "
-#PROMPT="%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[cyan]%}%c%{$reset_color%} (${git})${mode} "
+## Mode symbols
+#VI_INS="$"
+#VI_CMD=" "
+##VI_INS="λ"
+##VI_CMD="μ"
+#VI_MODE=$VI_INS         # Default
+#
+## Update mode symbol when mode changes
+#function zle-keymap-select {
+#  [[ $KEYMAP == vicmd ]] && VI_MODE=$VI_CMD || VI_MODE=$VI_INS
+#  zle reset-prompt
+#}
+#zle -N zle-keymap-select
+#
+## Reset to insert mode after hitting Enter
+#function zle-line-finish {  VI_MODE=$VI_INS }
+#zle -N zle-line-finish
+#
+## Also reset after Ctrl+C
+#TRAPINT() {
+#  VI_MODE=$VI_INS
+#  return $((128 + $1))
+#}
+#
+## Git branch function
+#git_branch() {
+#  local branch
+#  branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+#  [[ -n $branch ]] && echo "%{$fg_bold[red]%}git:(${branch})%{$reset_color%}"
+## [[ -n $branch ]] && echo "on %{$fg[magenta]%}${branch}%{$reset_color%}"
+#}
+#
+##LEFT PROMPT
+## Colors (Zsh-safe)
+#local mode='%{$fg_bold[blue]%}${VI_MODE}%{$reset_color%}'
+##local pwd='%{$fg_bold[blue]%}%~%{$reset_color%}'
+#local pwd='%{$fg_bold[blue]%}%c%{$reset_color%}' 
+#local git='$(git_branch)'
+##local prompt_char='$'
+#
+##FINAL PROMPT
+##PROMPT="${pwd} (${git})${mode} "
+#PROMPT="${pwd} ${git}${mode} "
+##PROMPT="%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[cyan]%}%c%{$reset_color%} (${git})${mode} "
 
 
 #alias cl=clear
