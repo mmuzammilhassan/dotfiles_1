@@ -10,7 +10,10 @@ mkdir -p "$BACKUP_DIR"
 
 link() {
   src="$DOTFILES_DIR/$1"
-  dest="$HOME/$2"
+  dest="$HOME/$2"  # Always expands to absolute path
+
+  # Ensure parent directory exists
+  mkdir -p "$(dirname "$dest")"
 
   if [ -e "$dest" ] || [ -L "$dest" ]; then
     echo "🔁 Backing up $dest"
@@ -30,15 +33,19 @@ link ".myclirc" ".myclirc"
 
 # Neovim config
 link ".config/nvim" ".config/nvim"
+link ".config/vifm" ".config/vifm"
+link ".config/picom" ".config/picom"
 
 # Suckless builds (st, dwm, dmenu, etc.)
-link "st" ".local/src/st"
-link "dwm" ".local/src/dwm"
-link "dmenu" ".local/src/dmenu"
+link ".local/src/st" ".local/src/st"
+link ".local/src/dwm" ".local/src/dwm"
+link ".local/src/dmenu" ".local/src/dmenu"
 
 echo "✅ Dotfiles setup complete!"
 
 #how to use this in new machine?
-#git clone git@github.com:yourusername/dotfiles.git ~/dotfiles
+#git clone git@github.com:yourusername/dotfiles_1.git ~/dotfiles 
+# (this repo if you are readin in github)
 #cd ~/dotfiles
+#chmod +x install.sh
 #./install.sh
