@@ -8,8 +8,8 @@
 //static char *font = "JetBrains Mono:extrabold:pixelsize=16:antialias=true:autohint=true";
 //static char *font2[] = { "JoyPixels:extrabold:pixelsize=16:antialias=true:autohint=true" };
 
-static char *font = "FiraCode:bold:pixelsize=16:antialias=true:autohint=true";
-static char *font2[] = { "FiraCode:bold:pixelsize=16:antialias=true:autohint=true" };
+static char *font = "FiraCode:medium:pixelsize=16:antialias=true:autohint=true";
+static char *font2[] = { "FiraCode:medium:pixelsize=16:antialias=true:autohint=true" };
 // use font size for Glass 20, 40, 60 
 // font designed with these sizes in mind
 //static char *font = "Glass TTY VT220:pixelsize=20";

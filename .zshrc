@@ -106,7 +106,7 @@ source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Example aliases
 # this is from bugswriter
  fcd() {
-   cd "$(find -type d | fzf)"
+   cd "$(find -type d | fzf -e)"
  }
  open() {
     xdg-open "$(find -type f | fzf -e)"
@@ -193,7 +193,7 @@ export TERM=xterm-256color
 # added this line cause tmux not supporting cursor blinking
 echo -ne '\e[1 q'
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#525252"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#999999"
 
 # TMUX-SESSIONIZER WORKS FROM CLI
 bindkey -s '\ef' "tmux-sessionizer\n"

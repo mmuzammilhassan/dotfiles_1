@@ -37,7 +37,7 @@ setxkbmap -layout us -variant dvorak &
 xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1 &
 #xcompmgr &
 picom --config ~/.config/picom/picom.conf &
-rosepine &
+rosepine_l &
 #dwmblocks &
 # xmodmap-remap2 & # this script execute in rosepine script
 exec dwm

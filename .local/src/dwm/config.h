@@ -8,9 +8,9 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
                                         /* this is bar font*/
-static const char *fonts[]          = { "FiraCode:bold:size=9", "JoyPixels:pixelsize=16:antialias=true:autohint=true"};
+static const char *fonts[]          = { "FiraCode:medium:size=9", "JoyPixels:pixelsize=16:antialias=true:autohint=true"};
                                         /* this is dmenu font*/
-static const char dmenufont[]       = "FiraCode:bold:size=16";
+static const char dmenufont[]       = "FiraCode:medium:size=16";
 //static const char dmenufont[]       = "JetBrains Mono:semibold:size=16";
 //static const char *fonts[]          = { "FiraCodeNerdFont:size16","FiraCodeNerdFont:pixelsize=16:antialias=true:autohint=true"};
 //static const char dmenufont[]          =  "FiraCodeNerdFont:size=16";
@@ -36,9 +36,10 @@ static char *colors[][3] = {
 
 /* tagging */
 //static const char *tags[] = { "1","2","3", "4", "5", "6", "7", "8", "9"};
-static const char *tags[] = { "1t","2dr","3w", "4di", "5", "6", "7q", "8f", "9ch"};
-//static const char *tags[] = { " ", " ", " ", " ", "", };
-// static const char *tags[] = { " ", " ", " ", " ", " " };
+//static const char *tags[] = { "1t","2dr","3w", "4di", "5", "6", "7q", "8f", "9ch"};
+//static const char *tags[] = { "1t","2q","3f", "4", "5", "6", "7c", "8", "9"};
+static const char *tags[] = { "", "", "", "", "", "", };
+// static const char *tags[] = { " ", " ","",  " ", " ", " " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -49,13 +50,9 @@ static const Rule rules[] = {
     { "TelegramDesktop",    NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "obs",                NULL,     NULL,           0,         1,          0,           0,        -1 },
     { "Lutris",             NULL,     NULL,           0,         1,          0,           0,        -1 },
-    { "draw",   		    NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
-    { "reddit",   		    NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
-    { "whatsapp",   		NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
-    { "discord",   		    NULL,     NULL,           1 << 3,    0,          0,          -1,        -1 },
-	{ "qutebrowser",        NULL,     NULL,           1 << 6,    0,          0,          -1,        -1 },
-    { "firefox",   		    NULL,     NULL,           1 << 7,    0,          0,          -1,        -1 },
-    { "Chromium",   		NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+    { "qutebrowser",   		NULL,     NULL,           1 << 0,    0,          0,          -1,        -1 },
+    { "Chromium",   	    NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
+//    { "firefox",   		    NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
     //{ "code",               NULL,     NULL,           1 << 4,    0,          0,          -1,        -1 },
     { "St",                 NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,                 NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */

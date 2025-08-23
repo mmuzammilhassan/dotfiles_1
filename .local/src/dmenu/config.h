@@ -6,9 +6,9 @@ static int topbar = 0;                      /* -b  option; if 0, dmenu appears a
 static const char *fonts[] = {
 //    "FiraCodeNerdFont:pixelsize=13:antialias=true:autohint=true",
  //   "FiraCodeNerdFont:pixelsize=13:antialias=true:autohint=true"
-     "FiraCode:bold:size=16",
+     "FiraCode:semibold:size=14",
     //"JetBrains Mono:size=16",
-    "JoyPixels:pixelsize=16:antialias=true:autohint=true"
+    "JoyPixels:pixelsize=14:antialias=true:autohint=true"
 //	"PxPlus IBM VGA 8x16:size=16",
 //	"PxPlus IBM VGA 8x16:pixelsize=16:antialias=true:autohint=true"
 };
