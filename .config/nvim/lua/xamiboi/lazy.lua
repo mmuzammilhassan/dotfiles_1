@@ -11,42 +11,35 @@
 --
 require("lazy").setup({
     -- Core
-    { "nvim-lua/plenary.nvim",            lazy = true },
+    { "nvim-lua/plenary.nvim", lazy = true },
     --    { "wbthomason/packer.nvim", enabled = false }, -- legacy, don't use anymore
 
-    -- Telescope
-    -- {
-    --   "nvim-telescope/telescope.nvim",
-    --   tag = "0.1.8",
-    --   dependencies = { "nvim-lua/plenary.nvim" }
-    -- },
-
---    -- DAP FOR PHP
---    {
---        "rcarriga/nvim-dap-ui",
---        dependencies = {
---            "mfussenegger/nvim-dap",
---            "theHamsta/nvim-dap-virtual-text",
---            "nvim-neotest/nvim-nio", -- 🔥 this is what’s missing
---        },
---        config = function()
---            local dap = require("dap")
---            local dapui = require("dapui")
---
---            dapui.setup()
---            require("nvim-dap-virtual-text").setup()
---
---            dap.listeners.after.event_initialized["dapui_config"] = function()
---                dapui.open()
---            end
---            dap.listeners.before.event_terminated["dapui_config"] = function()
---                dapui.close()
---            end
---            dap.listeners.before.event_exited["dapui_config"] = function()
---                dapui.close()
---            end
---        end,
---    },
+    --    -- DAP FOR PHP
+    --    {
+    --        "rcarriga/nvim-dap-ui",
+    --        dependencies = {
+    --            "mfussenegger/nvim-dap",
+    --            "theHamsta/nvim-dap-virtual-text",
+    --            "nvim-neotest/nvim-nio", -- 🔥 this is what’s missing
+    --        },
+    --        config = function()
+    --            local dap = require("dap")
+    --            local dapui = require("dapui")
+    --
+    --            dapui.setup()
+    --            require("nvim-dap-virtual-text").setup()
+    --
+    --            dap.listeners.after.event_initialized["dapui_config"] = function()
+    --                dapui.open()
+    --            end
+    --            dap.listeners.before.event_terminated["dapui_config"] = function()
+    --                dapui.close()
+    --            end
+    --            dap.listeners.before.event_exited["dapui_config"] = function()
+    --                dapui.close()
+    --            end
+    --        end,
+    --    },
 
     -- fzf-lua
     {
@@ -63,7 +56,7 @@ require("lazy").setup({
         name = "rose-pine",
         priority = 1000,
         config = function()
-            vim.cmd("colorscheme rose-pine")
+            vim.cmd("colorscheme rose-pine-dawn")
         end
     },
 
@@ -86,6 +79,7 @@ require("lazy").setup({
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
+        event = { "BufReadPost", "BufNewFile" },
         build = ":TSUpdate",
     },
 
@@ -100,16 +94,25 @@ require("lazy").setup({
     { "mbbill/undotree" },
 
     -- LSP
-    { "neovim/nvim-lspconfig" },
-    { "williamboman/mason.nvim" },
-    { "williamboman/mason-lspconfig.nvim" },
+    {
+        "neovim/nvim-lspconfig",
+        event = { "BufReadPost", "BufNewFile" },
+    },
+    {
+        "williamboman/mason.nvim",
+        cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+        dependencies = { "williamboman/mason-lspconfig.nvim" },
+    },
 
     -- Completion
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-path" },
     { "hrsh7th/cmp-buffer" },
-    { "saadparwaiz1/cmp_luasnip" },
+    {
+        "saadparwaiz1/cmp_luasnip",
+        event = "InsertEnter"
+    },
     { "hrsh7th/cmp-nvim-lua" },
 
     -- Snippets

@@ -1,10 +1,10 @@
 function ColorMyPencils(color)
-    color = color or "rose-pine-main"
+    color = color or "rose-pine-dawn"
     require("rose-pine").setup({
 --        styles = { italic = false },
     })
---    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
---    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+--    vim.api.nvim_set_hl(0, "Normal", { bg = "#13121c" })
+--    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#13121c" })
     --vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
     --vim.api.nvim_set_hl(0, "FzfLuaNormal", { bg = "none" })
     --vim.api.nvim_set_hl(0, "FzfLuaBorder", { bg = "none" })
@@ -25,8 +25,9 @@ function ColorMyPencils(color)
 
     --  vim.api.nvim_set_hl(0, "Comment", { italic = true, bold = false, underline = false, fg = "#a06967" }) -- Comments italic only, no bold
     -- vim.api.nvim_set_hl(0, "Comment", { italic = true, bold = false, underline = false, fg = "#908caa" }) -- Comments italic only, no bold + real comment color
-    --vim.api.nvim_set_hl(0, "cursorline", { bg = "#38313d"})                                                 -- Cursorline color
-    --vim.api.nvim_set_hl(0, "colorcolumn", { bg = "#a06967"})                                                 -- Cursorline color
+    vim.api.nvim_set_hl(0, "cursorline", { bg = "#eae2e3"})                                                 -- Cursorline color
+    vim.api.nvim_set_hl(0, "colorcolumn", { bg = "#eae2e3"})                                                 -- Cursorline color
+    --vim.api.nvim_set_hl(0, "colorcolumn", { bg = "none"})      --try this ones                                           -- Cursorline color
     -- vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = "#388eb0", bold = false })                       -- Give <?php tag a brighter color
     -- vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#388eb0", bold = false })                       -- Give <?php tag a brighter color
     -- vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = "#388eb0", bold = false })                             -- Give <html> thing
@@ -46,10 +47,10 @@ function ColorMyPencils(color)
     --    vim.api.nvim_set_hl(0, "@spell", { fg = "#242424" }) -- Comments italic only, no bold + real comment color
     -- vim.api.nvim_set_hl(0, "Comment",   { italic = true, bold = false, underline = false, fg = "#242424" }) -- Comments italic only, no bold + real comment color
     -- vim.api.nvim_set_hl(0, "@comment",  { italic = true, bold = false, underline = false, fg = "#242424" }) -- Comments italic only, no bold + real comment color
-    vim.api.nvim_set_hl(0, "SpellBad", { underline = false })  -- this line for comment underline
-    vim.api.nvim_set_hl(0, "SpellCap", { underline = false })  -- @this is for html h1 or p tags
-    vim.api.nvim_set_hl(0, "SpellRare", { underline = false }) -- @this is for html h1 or p tags
-    vim.api.nvim_set_hl(0, "SpellLocal", { underline = false }) -- @this is for html h1 or p tags
+   -- vim.api.nvim_set_hl(0, "SpellBad", { underline = false })  -- this line for comment underline
+   -- vim.api.nvim_set_hl(0, "SpellCap", { underline = false })  -- @this is for html h1 or p tags
+   -- vim.api.nvim_set_hl(0, "SpellRare", { underline = false }) -- @this is for html h1 or p tags
+   -- vim.api.nvim_set_hl(0, "SpellLocal", { underline = false }) -- @this is for html h1 or p tags
     --    vim.api.nvim_set_hl(0, "SpellBad", { fg = "#333333", underline = false })                              -- this line for comment underline
     --    vim.api.nvim_set_hl(0, "SpellCap", { fg = "#242424", underline = false })                              -- @this is for html h1 or p tags
     --    vim.api.nvim_set_hl(0, "SpellRare", { fg = "#242424", underline = false })                             -- @this is for html h1 or p tags

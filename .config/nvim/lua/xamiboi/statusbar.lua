@@ -1,0 +1,73 @@
+-- RIGHT BOTTOM SCROLL THINGY
+-- https://symbl.cc/en/unicode-table/#braille-patterns  2809
+--function _G.scroll_bar()
+--    --local chars = { '█','▇','▆','▅','▄','▃','▂','▁' }  -- reversed!
+--    --local chars = { '▁','▂','▃','▄','▅','▆','▇','█' }
+--
+--    --    local chars = { '▀','⠉','⠒','⠶', '━','⠤','⣀', '▄'}
+--
+--    local chars = { '⠉', '⣶', '▄', '⣭', '⣉', '⣛', '▀', '⠿', '⣀' }
+--
+--    --  local chars = { '⠉','⠒', '━','⠤','⣀'}
+--    --local chars = { '⣶', '⣭', '⣛', '⠿' }
+--    local current_line = vim.fn.line('.')
+--    local total_lines = vim.fn.line('$')
+--    local ratio = current_line / total_lines
+--    local index = math.floor(ratio * (#chars - 1)) + 1
+--    return chars[index]
+--end
+
+-- SET STATUSLINE
+--vim.o.statusline = table.concat {
+----    ' %-10{v:lua.display_mode()}', -- modes
+----    ' %=',                        -- this will make statusbar in center
+--    '%f',                          -- File name
+--    ' %m%r%h%w',                    -- Flags
+--    -- ' [%{&ff}]',              -- File format
+--    -- ' [%{&fileencoding}]',
+--    ' %=',
+--    --'%y ',                       -- File type
+--    --' %{FugitiveStatusline()} ', -- → Git info if using vim-fugitive
+--    -- '%l:%c',                 -- Line and column
+--    '%l,%c',                     -- Line and column
+--    --' [%p%%]',                   -- Percentage through file
+--    --'  ',
+--    --' %{v:lua.scroll_bar()}'     -- Our scrollbar!
+--}
+
+-- Return full mode name
+--function _G.display_mode()
+--    local mode_map = {
+--        n = "[NORMAL]",
+--        no = "[N-PENDING]",
+--        v = "[VISUAL]",
+--        V = "[V-LINE]",
+--        [""] = "[V-BLOCK]",
+--        i = "[INSERT]",
+--        ic = "[INSERT]",
+--        R = "[REPLACE]",
+--        Rv = "[V-REPLACE]",
+--        c = "[COMMAND]",
+--        cv = "[VIM EX]",
+--        ce = "[EX]",
+--        s = "[SELECT]",
+--        S = "[S-LINE]",
+--        [""] = "[S-BLOCK]",
+--        t = "[TERMINAL]",
+--    }
+--
+--    local current_mode = vim.api.nvim_get_mode().mode
+--    return mode_map[current_mode] or current_mode
+--end
+
+--statusbar info
+--vim.o.statusline = ' %t %m%r%h%w %=%l,%c %y %{FugitiveStatusline()} '
+--%m → modified flag (+ if unsaved)
+--%r → readonly flag
+--%h → help buffer flag
+--%w → preview window flag
+--%= → separates left/right
+--%l:%c → line:column
+--%y → file type
+--%{FugitiveStatusline()} → Git info if using vim-fugitive
+--%F → full path in winbar

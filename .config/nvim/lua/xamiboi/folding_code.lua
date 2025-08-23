@@ -1,0 +1,17 @@
+
+---- FOLDING CODE AND SAVE THEM
+--vim.opt.foldmethod = "manual"  -- Important!
+--vim.opt.viewoptions:remove("options")
+--vim.opt.viewoptions:append({ "folds", "cursor", "curdir" })
+--vim.api.nvim_create_augroup("remember_folds", { clear = true })
+--vim.api.nvim_create_autocmd("BufWinLeave", {
+--  pattern = "*",
+--  command = "silent! mkview",
+--  group = "remember_folds",
+--})
+--
+--vim.api.nvim_create_autocmd("BufWinEnter", {
+--  pattern = "*",
+--  command = "silent! loadview",
+--  group = "remember_folds",
+--})
