@@ -1,3 +1,4 @@
+-- Group for focus-based UI toggling
 local timer = vim.loop.new_timer()
 
 vim.api.nvim_create_autocmd("FocusGained", {
@@ -5,7 +6,7 @@ vim.api.nvim_create_autocmd("FocusGained", {
   callback = function()
     timer:stop()
     timer:start(10, 0, vim.schedule_wrap(function() -- default value was 100ms 
-      vim.wo.cursorline = true
+--      vim.wo.cursorline = true
       vim.wo.relativenumber = true
       vim.wo.number = true
      --       vim.api.nvim_set_hl(0, "Normal", { bg="#08090d"})
@@ -19,7 +20,7 @@ vim.api.nvim_create_autocmd("FocusLost", {
   callback = function()
     timer:stop()
     timer:start(10, 0, vim.schedule_wrap(function() -- default value was 100ms 
-      vim.wo.cursorline = false
+--      vim.wo.cursorline = false
       vim.wo.relativenumber = false
       vim.wo.number = false
             --vim.api.nvim_set_hl(0, "Normal", { bg="#000000"})

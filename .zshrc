@@ -171,7 +171,8 @@ setopt prompt_subst     # Allow variables inside prompt
 
 
 #alias cl=clear
-#alias word=desktopeditors
+alias word=desktopeditors
+alias word=onlyoffice-desktopeditors
 alias n=nvim
 alias v=vim
 #alias qb=qutebrowser

@@ -19,12 +19,6 @@
 --
 
 
--- Enable line numbers in Netrw/ file explorer in neovim
-vim.cmd([[
-    autocmd FileType netrw setlocal number
-    autocmd FileType netrw setlocal relativenumber
-]])
-
 -- THIS DOWN LINES ARE FROM PRIMEAGEN
 -- Navigation vim + tmux panes better
 --vim.keymap.set('n', '<C-h>', ':wincmd h<CR>')
@@ -43,9 +37,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
-
 vim.opt.wrap = false
-
 
 -- this is i add from chatgpt
 --vim.o.cmdheight = 0
@@ -53,14 +45,13 @@ vim.o.showmode = true
 --vim.opt.lazyredraw = true
 --vim.opt.timeoutlen = 300
 
-
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- cursorline things
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.cursorcolumn = false
 
 vim.opt.hlsearch = false
@@ -68,11 +59,11 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
+vim.opt.updatetime = 1
+
 vim.opt.scrolloff = 9
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
-
-vim.opt.updatetime = 100
 
 vim.opt.colorcolumn = "80"
 

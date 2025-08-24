@@ -67,7 +67,7 @@ end
 require("mason").setup()
 require("mason-lspconfig").setup({
   --ensure_installed = { "intelephense", "tsserver", "tailwindcss", "lua_ls", "html", "cssls" },
-  ensure_installed = { "intelephense",  "tailwindcss", "lua_ls", "html", "cssls" },
+  ensure_installed = { "intelephense", "tailwindcss", "lua_ls", "html", "cssls" },
   automatic_installation = true,
 })
 
