@@ -1,6 +1,6 @@
 -- Netrw clean UI tweaks
 --vim.g.netrw_banner = 0              -- hide the banner (top help text)
-vim.g.netrw_liststyle = 3           -- tree view by default
+--vim.g.netrw_liststyle = 3           -- tree view by default
 --vim.g.netrw_browse_split = 0        -- don't auto-split (you control with v/s)
 vim.g.netrw_winsize = 25            -- default width for the tree
 
