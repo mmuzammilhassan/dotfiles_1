@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("FocusGained", {
 --      vim.wo.cursorline = true
       vim.wo.relativenumber = true
       vim.wo.number = true
-     --       vim.api.nvim_set_hl(0, "Normal", { bg="#08090d"})
+--      vim.api.nvim_set_hl(0, "Normal", { bg="#08090d"})
       vim.diagnostic.config({ virtual_text = true, signs = true })
     end))
   end,
@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("FocusLost", {
 --      vim.wo.cursorline = false
       vim.wo.relativenumber = false
       vim.wo.number = false
-            --vim.api.nvim_set_hl(0, "Normal", { bg="#000000"})
+--      vim.api.nvim_set_hl(0, "Normal", { bg="#000000"})
       vim.diagnostic.config({ virtual_text = false, signs = false })
     end))
   end,

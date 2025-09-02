@@ -1,13 +1,13 @@
 #!/bin/sh
 
 
-wall=$(find ~/pix/dds/cute-umbrella-rose-light.jpg)
+wall=$(find ~/pix/dds/digital-art-boy-light.jpg)
+#wall=$(find ~/pix/dds/cute-umbrella-rose-light.jpg)
 #wall=$(find ~/pix/Anime/girl-rose.jpg)
 #wall=$(find ~/pix/Anime/girl.png)
 #wall=$(find ~/pix/wallmain/pexels-cesar-perez-733745.jpg)
 #wall=$(find ~/pix/Anime/radio.jpg)
 # wall=$(find ~/pix/Anime/wallhaven-nature.png)
-##wall=$(find ~/pix/Anime/digital-art-boy.jpg)
 ###wall=$(find ~/pix/carlos/4pqrn9xjdcsc1.jpeg)
 #wall=$(find ~/pix/Anime/digital-art-boy.jpg) last one
 #wall=$(find ~/pix/dds/golden-skull.png)

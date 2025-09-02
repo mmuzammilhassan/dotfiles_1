@@ -1,7 +1,8 @@
 #!/bin/sh
 
 
-wall=$(find ~/pix/Anime/girl-rose.jpg)
+wall=$(find ~/pix/dds/digital-art-boy-dark.jpg)
+#wall=$(find ~/pix/Anime/girl-rose.jpg)
 #wall=$(find ~/pix/Anime/girl.png)
 #wall=$(find ~/pix/wallmain/pexels-cesar-perez-733745.jpg)
 #wall=$(find ~/pix/Anime/radio.jpg)
