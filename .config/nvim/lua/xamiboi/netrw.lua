@@ -1,8 +1,13 @@
 -- Netrw clean UI tweaks
---vim.g.netrw_banner = 0              -- hide the banner (top help text)
---vim.g.netrw_liststyle = 3           -- tree view by default
---vim.g.netrw_browse_split = 0        -- don't auto-split (you control with v/s)
-vim.g.netrw_winsize = 25            -- default width for the tree
+vim.g.netrw_banner = 0              -- hide the banner (top help text)
+vim.g.netrw_liststyle = 3           -- tree view by default
+--vim.g.netrw_browse_split = 4        -- don't auto-split (you control with v/s)
+--vim.g.netrw_winsize = 25            -- default width for the tree
+
+vim.cmd([[
+    autocmd FileType netrw setlocal number
+    autocmd FileType netrw setlocal relativenumber
+]])
 
 
 --:Ex with tree-like view
@@ -19,21 +24,21 @@ vim.g.netrw_winsize = 25            -- default width for the tree
 --2 = wide listing
 --3 = tree view
 --So with vim.g.netrw_liststyle = 3, every time you run :Ex, you’ll open straight into the tree explorer view.
-vim.g.netrw_liststyle = 3
+--vim.g.netrw_liststyle = 3
 
 
 -- Disable cursorline and colorcolumn in netrw
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "netrw",
-  callback = function()
-    vim.opt_local.cursorline = false
-    vim.opt_local.colorcolumn = ""
-    vim.opt_local.signcolumn = "no" -- optional: remove sign column too
-    -- optional: you can also tweak numbers if you want
-     vim.opt_local.number = false
-     vim.opt_local.relativenumber = false
-  end,
-})
+--vim.api.nvim_create_autocmd("FileType", {
+--  pattern = "netrw",
+--  callback = function()
+--    vim.opt_local.cursorline = false
+--    vim.opt_local.colorcolumn = ""
+--    vim.opt_local.signcolumn = "no" -- optional: remove sign column too
+--    -- optional: you can also tweak numbers if you want
+--     vim.opt_local.number = false
+--     vim.opt_local.relativenumber = false
+--  end,
+--})
 -- Example: always open in vertical split
 --
 --vim.g.netrw_browse_split = 2
