@@ -19,7 +19,7 @@ vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
 
 -- this is my custom config this is not available in online
 -- basic fzf-lua configurations
-vim.keymap.set("n", "<leader>hp", function()
+vim.keymap.set("n", "<leader>ph", function()
     local entries = {}
     for _, item in ipairs(harpoon:list().items) do
         table.insert(entries, item.value)

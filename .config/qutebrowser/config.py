@@ -14,13 +14,13 @@
 # Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig(False)
 
-c.url.start_pages = "https://www.google.com/"
-c.url.searchengines = {
-    "DEFAULT": "https://www.google.com/search?q={}",
-    "g": "https://www.google.com/search?q={}",
-    "ddg": "https://duckduckgo.com/?q={}",
-    "bi": "https://www.bing.com/search?q={}"
-}
+#c.url.start_pages = "https://www.google.com/"
+#c.url.searchengines = {
+#    "DEFAULT": "https://www.google.com/search?q={}",
+#    "g": "https://www.google.com/search?q={}",
+#    "ddg": "https://duckduckgo.com/?q={}",
+#    "bi": "https://www.bing.com/search?q={}"
+#}
 
 # Set default font for the UI (status bar, tabs, etc.)
 c.fonts.default_family = 'default'  # or 'Fira Code', 'JetBrains Mono', etc.
