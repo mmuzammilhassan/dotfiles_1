@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-    color = color or "rose-pine-main"
+    color = color or "rose-pine-dawn"
     require("rose-pine").setup({
 --        styles = { italic = false },
     })
@@ -25,8 +25,8 @@ function ColorMyPencils(color)
 
     --  vim.api.nvim_set_hl(0, "Comment", { italic = true, bold = false, underline = false, fg = "#a06967" }) -- Comments italic only, no bold
     -- vim.api.nvim_set_hl(0, "Comment", { italic = true, bold = false, underline = false, fg = "#908caa" }) -- Comments italic only, no bold + real comment color
---    vim.api.nvim_set_hl(0, "cursorline", { bg = "#eae2e3"})                                                 -- Cursorline color
---    vim.api.nvim_set_hl(0, "colorcolumn", { bg = "#eae2e3"})                                                 -- Cursorline color
+    vim.api.nvim_set_hl(0, "cursorline", { bg = "#eae2e3"})                                                 -- Cursorline color
+    vim.api.nvim_set_hl(0, "colorcolumn", { bg = "#d6cbf2"})                                                 -- Cursorline color
     --vim.api.nvim_set_hl(0, "colorcolumn", { bg = "none"})      --try this ones                                           -- Cursorline color
     -- vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = "#388eb0", bold = false })                       -- Give <?php tag a brighter color
     -- vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = "#388eb0", bold = false })                       -- Give <?php tag a brighter color

@@ -1,0 +1,96 @@
+#version: '3.9'
+
+networks:
+  app_net:
+
+services:
+  # Shared MariaDB
+  db:
+    image: mariadb:11
+    container_name: infra_db
+    restart: always
+    ports:
+      - "127.0.0.1:3306:3306" # ← add this line 
+    volumes:
+      - ../storage/mariadb_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: myproject
+    networks:
+      - app_net
+
+  # Adminer
+  adminer:
+    image: adminer
+    container_name: infra_adminer
+    restart: always
+    ports:
+      - "3000:8080"
+    depends_on:
+      - db
+    networks:
+      - app_net
+
+  # Mycli for MariaDB
+  mycli:
+    image: jdecool/mycli
+    container_name: infra_mycli
+    entrypoint: ["sleep", "infinity"]
+    volumes:
+      - ~/.myclirc:/root/.myclirc:ro  # mount host config into container
+    networks:
+      - app_net
+    depends_on:
+      - db
+
+#  # GIO PHP App
+#  gio_app:
+#    build: ../gio/v36/docker
+#    container_name: gio_app
+#    volumes:
+#      - ../gio/v36/src:/var/www
+#    depends_on:
+#      - db
+#    networks:
+#      - app_net
+#
+#  # GIO Nginx
+#  gio_nginx:
+#    image: nginx:alpine
+#    container_name: gio_nginx
+#    ports:
+#      - "8000:80"
+#    volumes:
+#      - ../gio/v36/src:/var/www
+#      - ../gio/v36/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+#    depends_on:
+#      - gio_app
+#    networks:
+#      - app_net
+
+
+  # Yahoo PHP App
+  yahoo_app:
+    build: ../yahoo_baba/docker
+    container_name: yahoo_app
+    volumes:
+      - ../yahoo_baba/src:/var/www
+    depends_on:
+      - db
+    networks:
+      - app_net
+
+  # Yahoo Nginx
+  yahoo_nginx:
+    image: nginx:alpine
+    container_name: yahoo_nginx
+    ports:
+      - "8001:80"
+    volumes:
+      - ../yahoo_baba/src:/var/www
+      - ../yahoo_baba/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - yahoo_app
+    networks:
+      - app_net
+

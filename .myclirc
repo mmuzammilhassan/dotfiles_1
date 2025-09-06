@@ -1,3 +1,6 @@
+# this is the commond for docker to run with mycli
+# docker exec -it infra_mycli mycli -h db -u root
+#
 # vi: ft=dosini
 [main]
 
@@ -31,7 +34,7 @@ log_level = INFO
 timing = True
 
 # Beep after long-running queries are completed; 0 to disable.
-beep_after_seconds = 0
+beep_after_seconds = 1
 
 # Table format. Possible values: ascii, double, github,
 # psql, plain, simple, grid, fancy_grid, pipe, orgtbl, rst, mediawiki, html,
@@ -45,7 +48,8 @@ table_format = ascii
 # fruity.
 # Screenshots at http://mycli.net/syntax
 # Can be further modified in [colors]
-syntax_style = rtt
+# borland 
+syntax_style = friendly
 
 # Keybindings: Possible values: emacs, vi.
 # Emacs mode: Ctrl-A is home, Ctrl-E is end. All emacs keybindings are available in the REPL.
@@ -74,7 +78,7 @@ prompt = '\t \u@\h:\d> '
 prompt_continuation = '->'
 
 # Skip intro info on startup and outro info on exit
-less_chatty = False
+less_chatty = True
 
 # Use alias from --login-path instead of host name in prompt
 login_path_as_host = False

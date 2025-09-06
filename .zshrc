@@ -117,12 +117,17 @@ alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selectio
 alias cin="xclip -selection c"
 alias cout="xclip -selection clipboard -o"
 
+# this is for docker mycli
+alias mycli-docker='docker exec -it infra_mycli mycli -h db -u root '
+
+
 #vim in bash super cool right # btw this is from luke smith
 #set -o vi
 
 # PROMPT CODE
 bindkey -v              # Enable vi mode
-setopt prompt_subst     # Allow variables inside prompt
+
+#setopt prompt_subst     # Allow variables inside prompt
 
 ## Mode symbols
 #VI_INS="$"
