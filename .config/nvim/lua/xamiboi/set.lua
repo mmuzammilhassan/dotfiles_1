@@ -30,7 +30,16 @@
 -- BASIC NEOVIM SETUP
 vim.opt.number = true
 vim.opt.relativenumber = true
---vim.opt.linespace=8
+
+-- cursorline things
+vim.opt.cursorline = true
+--vim.opt.cursorcolumn = false
+
+--Source: :help 'statuscolumn' in Neovim
+--vim.opt.statuscolumn = "%l %=%s" -- this is awesome but not perfect
+--vim.opt.statuscolumn = "%l    " -- this is awesome but not perfect
+vim.opt.statuscolumn = " %l %=" -- this is awesome but not perfect
+
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -39,9 +48,6 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 vim.opt.wrap = false
-
---Source: :help 'statuscolumn' in Neovim
---vim.opt.statuscolumn = "%l %=%s" -- this is awesome but not perfect
 
 --vim.o.cmdheight = 0
 vim.o.showmode = true
@@ -53,15 +59,10 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
--- cursorline things
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = false
-
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
-
 vim.opt.updatetime = 1
 
 vim.opt.scrolloff = 9

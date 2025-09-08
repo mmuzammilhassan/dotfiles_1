@@ -10,7 +10,8 @@ if [ "$MODE" = "dark" ]; then
     wal --theme /home/zephyr/.local/bin/pywal/dist/rose-pine-main.json
 
 elif [ "$MODE" = "light" ]; then
-    wall=~/pix/dds/digital-art-boy-light.jpg
+    #wall=~/pix/dds/digital-art-boy-light.jpg
+    wall=~/pix/dds/wallhaven-poko7j.jpg
     xwallpaper --zoom "$wall"
 
     wal -c

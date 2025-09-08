@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("FocusGained", {
       vim.wo.relativenumber = true
       vim.wo.number = true
 --      vim.api.nvim_set_hl(0, "Normal", { bg="#08090d"})
-      vim.diagnostic.config({ virtual_text = true, signs = true })
+      vim.diagnostic.config({ virtual_text = true, signs = false })
     end))
   end,
 })

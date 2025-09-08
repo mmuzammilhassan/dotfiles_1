@@ -1,15 +1,17 @@
 vim.keymap.set("n", "<leader>pf", "<cmd>FzfLua files<CR>", { desc = "FZF Find Files" })
 vim.keymap.set("n", "<leader>ps", "<cmd>FzfLua live_grep_native<CR>", { desc = "FZF Live GrepHelp" })
 vim.keymap.set("n", "<leader>pg", "<cmd>FzfLua git_files<CR>", { desc = "FZF Git Files" })
-vim.keymap.set("n", "<leader>fh", "<cmd>FzfLua help_tags<CR>", { desc = "FZF Help" })
 vim.keymap.set("n", "<leader>pc", "<cmd>FzfLua colorschemes<CR>", { desc = "Pick Colorscheme" })
-vim.keymap.set("n", "<leader>dc", "<cmd>FzfLua awesome_colorschemes<CR>", { desc = "Download Colorscheme" }) --for theme search
-vim.keymap.set("n", "<leader>cs", "<cmd>FzfLua spell_suggest<CR>", { desc = "spell_suggest" })
+vim.keymap.set("n", "<leader>ph", "<cmd>FzfLua help_tags<CR>", { desc = "FZF Help" })
+vim.keymap.set("n", "<leader>pd", "<cmd>FzfLua awesome_colorschemes<CR>", { desc = "Download Colorscheme" }) --for theme search
+vim.keymap.set("n", "<leader>pc", "<cmd>FzfLua spell_suggest<CR>", { desc = "spell_suggest" })
+
 require("fzf-lua").setup({
-  files = {
-    -- this is the default command but you can override it here
-    cmd = "fd --type f --hidden --follow --exclude .git"
-  }
+    files = {
+        -- this is the default command but you can override it here
+        --    cmd = "fd --type f --hidden --follow --exclude .git"
+        cmd = "fd --type f --hidden --follow --exclude .git --exclude .gitignore"
+    }
 })
 
 --require('fzf-lua').setup({
