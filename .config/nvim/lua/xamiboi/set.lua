@@ -40,7 +40,9 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
 
--- this is i add from chatgpt
+--Source: :help 'statuscolumn' in Neovim
+--vim.opt.statuscolumn = "%l %=%s" -- this is awesome but not perfect
+
 --vim.o.cmdheight = 0
 vim.o.showmode = true
 --vim.opt.lazyredraw = true

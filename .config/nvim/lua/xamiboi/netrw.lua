@@ -12,8 +12,8 @@ vim.cmd([[
     autocmd FileType netrw setlocal number
     autocmd FileType netrw setlocal relativenumber
     autocmd FileType netrw setlocal wrap
-    autocmd FileType netrw setlocal colorcolumn=0
 ]])
+    --autocmd FileType netrw setlocal colorcolumn=0
     --autocmd FileType netrw setlocal nocursorline
 
 
