@@ -27,7 +27,7 @@ c.fonts.default_family = 'default'  # or 'Fira Code', 'JetBrains Mono', etc.
 c.fonts.default_size = '14pt'
 
 # Set font size for web content
-c.fonts.web.size.default = 22
+c.fonts.web.size.default = 24
 c.fonts.web.size.minimum = 18  # optional, sets a minimum so small sites are still readable
 
 # Which cookies to accept. With QtWebEngine, this setting also controls

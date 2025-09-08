@@ -8,14 +8,9 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
                                         /* this is bar font*/
-static const char *fonts[]          = { "FiraCode:medium:size=9", "JoyPixels:pixelsize=16:antialias=true:autohint=true"};
+static const char *fonts[]          = { "FiraCode:medium:size=11", "JoyPixels:pixelsize=18:antialias=true:autohint=true"};
                                         /* this is dmenu font*/
-static const char dmenufont[]       = "FiraCode:medium:size=16";
-//static const char dmenufont[]       = "JetBrains Mono:semibold:size=16";
-//static const char *fonts[]          = { "FiraCodeNerdFont:size16","FiraCodeNerdFont:pixelsize=16:antialias=true:autohint=true"};
-//static const char dmenufont[]          =  "FiraCodeNerdFont:size=16";
-//static const char *fonts[]          = { "PxPlus IBM VGA 8x16:size=14", "PxPlus IBM VGA 8x16:pixelsize=16:antialias=true:autohint=true"};
-//static const char dmenufont[]       = "PxPlus IBM VGA 8x16:size=16" ;
+static const char dmenufont[]       = "FiraCode:medium:size=18";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";

@@ -1,3 +1,6 @@
+--vim.g.loaded_netrw = 1
+--vim.g.loaded_netrwPlugin = 1
+
 -- Netrw clean UI tweaks
 vim.g.netrw_banner = 0              -- hide the banner (top help text)
 vim.g.netrw_liststyle = 3           -- tree view by default
@@ -9,7 +12,9 @@ vim.cmd([[
     autocmd FileType netrw setlocal number
     autocmd FileType netrw setlocal relativenumber
     autocmd FileType netrw setlocal wrap
+    autocmd FileType netrw setlocal colorcolumn=0
 ]])
+    --autocmd FileType netrw setlocal nocursorline
 
 
 --:Ex with tree-like view

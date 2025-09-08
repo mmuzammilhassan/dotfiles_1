@@ -4,13 +4,8 @@
 static int topbar = 0;                      /* -b  option; if 0, dmenu appears at bottom     */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
-//    "FiraCodeNerdFont:pixelsize=13:antialias=true:autohint=true",
- //   "FiraCodeNerdFont:pixelsize=13:antialias=true:autohint=true"
-     "FiraCode:semibold:size=14",
-    //"JetBrains Mono:size=16",
-    "JoyPixels:pixelsize=14:antialias=true:autohint=true"
-//	"PxPlus IBM VGA 8x16:size=16",
-//	"PxPlus IBM VGA 8x16:pixelsize=16:antialias=true:autohint=true"
+     "FiraCode:semibold:size=16",
+    "JoyPixels:pixelsize=16:antialias=true:autohint=true"
 };
 static const unsigned int bgalpha = 0xe0;
 static const unsigned int fgalpha = OPAQUE;
@@ -29,7 +24,7 @@ static const unsigned int alphas[SchemeLast][2] = {
 };
 
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
-static unsigned int lines      = 9;
+static unsigned int lines      = 8;
 
 /*
  * Characters not considered part of a word while deleting words

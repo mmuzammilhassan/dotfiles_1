@@ -30,6 +30,7 @@
 -- BASIC NEOVIM SETUP
 vim.opt.number = true
 vim.opt.relativenumber = true
+--vim.opt.linespace=8
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -51,7 +52,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- cursorline things
-vim.opt.cursorline = false
+vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
 
 vim.opt.hlsearch = false

@@ -3,9 +3,35 @@
 
 -- Custom commands
 vim.api.nvim_create_user_command('W', 'w', {})
-vim.api.nvim_create_user_command('Q', 'q', {})
+--vim.api.nvim_create_user_command('Q', 'q', {})
 vim.api.nvim_create_user_command('Wq', 'wq', {})
 -- vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true, nowait = true }) -- this is like for jj to Esa
+
+---- NEOVIM TERMINAL CONFIG
+--vim.api.nvim_create_autocmd('TermOpen', {
+--    group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+--    callback = function()
+--        vim.api.number = false;
+--        vim.api.relativenumber = false;
+--        vim.api.wrap = false;
+--    end,
+--})
+--
+--local job_id = 0
+--vim.keymap.set("n", "<space>st", function()
+--    vim.cmd.vnew()
+--    vim.cmd.term()
+--    vim.cmd.wincmd("J")
+--    vim.api.nvim_win_set_height(0, 5)
+--
+--    job_id = vim.bo.channel
+--end)
+--
+--vim.keymap.set("n", "<space>example", function ()
+--    --make
+--    --go build, go test ./asduauh
+--    vim.fn.chansend(job_id, {"ls -al\r\n"})
+--end)
 
 -- Key mappings
 -- vim.api.nvim_set_keymap('n', 'J', '<nop>', { noremap = true, nowait = true })
@@ -23,7 +49,8 @@ vim.keymap.set('n', '<Left>', '<cmd>vertical resize -5<cr>', { desc = "Increase 
 -- this down lines are from primeagen i just copy
 
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+--vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pn", vim.cmd.Ex)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 

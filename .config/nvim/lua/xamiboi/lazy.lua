@@ -44,7 +44,7 @@ require("lazy").setup({
     -- fzf-lua
     {
         "ibhagwan/fzf-lua",
-        dependencies = { "nvim-tree/nvim-web-devicons" }, -- optional, for icons
+--        dependencies = { "nvim-tree/nvim-web-devicons" }, -- optional, for icons
         config = function()
             require("fzf-lua").setup({})
         end,

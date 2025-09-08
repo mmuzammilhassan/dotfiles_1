@@ -3,6 +3,16 @@ function ColorMyPencils(color)
     require("rose-pine").setup({
 --        styles = { italic = false },
     })
+    -- Customize specific styles
+    -- :FzfLua highlights
+    --
+    -- run this command in neovim if you want to change some color,
+    -- just hover your cursor and run this bottom command in normal mode
+    -- :lua print(vim.inspect(vim.treesitter.get_captures_at_cursor()))
+    --
+    -- if treesitter playground plugin installed then this bottom command works to
+    -- :TSHighlightCapturesUnderCursor
+    --
 --    vim.api.nvim_set_hl(0, "Normal", { bg = "#13121c" })
 --    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#13121c" })
     --vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
@@ -14,18 +24,10 @@ function ColorMyPencils(color)
     -- vim.api.nvim_set_hl(0, "Normal", { bg = "#050505" })
     --vim.api.nvim_set_hl(0, "NormalFloat", { fg ="#5c5c5c", bg = "#151320" })
     --vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#151320" })
-    -- Customize specific styles
-    --
-    -- run this command in neovim if you want to change some color,
-    -- just hover your cursor and run this bottom command in normal mode
-    -- :lua print(vim.inspect(vim.treesitter.get_captures_at_cursor()))
-    --
-    -- if treesitter playground plugin installed then this bottom command works to
-    -- :TSHighlightCapturesUnderCursor
 
     --  vim.api.nvim_set_hl(0, "Comment", { italic = true, bold = false, underline = false, fg = "#a06967" }) -- Comments italic only, no bold
     -- vim.api.nvim_set_hl(0, "Comment", { italic = true, bold = false, underline = false, fg = "#908caa" }) -- Comments italic only, no bold + real comment color
-    vim.api.nvim_set_hl(0, "cursorline", { bg = "#eae2e3"})                                                 -- Cursorline color
+--    vim.api.nvim_set_hl(0, "cursorline", { bg = "#eae2e3"})                                                 -- Cursorline color
     vim.api.nvim_set_hl(0, "colorcolumn", { bg = "#d6cbf2"})                                                 -- Cursorline color
     --vim.api.nvim_set_hl(0, "colorcolumn", { bg = "none"})      --try this ones                                           -- Cursorline color
     -- vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = "#388eb0", bold = false })                       -- Give <?php tag a brighter color

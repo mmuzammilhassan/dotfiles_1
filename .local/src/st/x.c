@@ -27,6 +27,7 @@ int disablebold = 0;
 int disableitalic = 0;
 int disableroman = 0;
 
+
 /* types used in config.h */
 typedef struct {
 	uint mod;
@@ -80,6 +81,9 @@ static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
 static void ttysend(const Arg *);
+static void linespacereset(const Arg *);
+static void setlinespacing(const Arg *);
+static void linespace(const Arg *);
 
 /* config.h for applying patches and the configuration. */
 #include "config.h"
@@ -369,6 +373,35 @@ zoomreset(const Arg *arg)
 		larg.f = defaultfontsize;
 		zoomabs(&larg);
 	}
+}
+
+// chatgpt says for linespacing key
+void linespacereset(const Arg *arg)
+{
+    linespacing = defaultlinespacing;
+    win.ch = ceilf(dc.font.height * chscale) + linespacing;
+
+    xclear(0, 0, win.w, win.h);
+    ttyresize(win.w, win.h);
+    redraw();
+}
+void linespaceabs(const Arg *arg) {
+    linespacing = arg->i;
+    if (linespacing < 0)
+        linespacing = 0;
+    if (linespacing > maxlinespacing)
+        linespacing = maxlinespacing;
+
+    win.ch = ceilf(dc.font.height * chscale) + linespacing;
+
+    xclear(0, 0, win.w, win.h);
+    ttyresize(win.w, win.h);
+    redraw();
+}
+void linespace(const Arg *arg) {
+    Arg larg;
+    larg.i = linespacing + arg->i;
+    linespaceabs(&larg);
 }
 
 void
@@ -1072,7 +1105,9 @@ xloadfonts(char *fontstr, double fontsize)
 
 	/* Setting character width and height. */
 	win.cw = ceilf(dc.font.width * cwscale);
-	win.ch = ceilf(dc.font.height * chscale);
+//	win.ch = ceilf(dc.font.height * chscale);
+    win.ch = ceilf(dc.font.height * chscale) + linespacing;
+
 
     FcPatternDel(pattern, FC_SLANT);
     if (!disableitalic)

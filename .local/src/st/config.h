@@ -10,19 +10,13 @@
 
 static char *font = "FiraCode:medium:pixelsize=16:antialias=true:autohint=true";
 static char *font2[] = { "FiraCode:medium:pixelsize=16:antialias=true:autohint=true" };
-// use font size for Glass 20, 40, 60 
-// font designed with these sizes in mind
-//static char *font = "Glass TTY VT220:pixelsize=20";
-//static char *font2[] = { "Glass TTY VT220:pixelsize=20" };
 
-// style=16 recommended
-//static char *font = "PxPlus IBM VGA 8x16:pixelsize=16";
-//static char *font2[] = { "PxPlus IBM VGA 8x16:pixelsize=16" };
+// Default line spacing (in pixels)
+static int linespacing = 4;
+static const int defaultlinespacing = 4;
+static const int maxlinespacing = 20;  // Optional upper limit
 
-//static char *font = "PxPlus IBM VGA 8x16:pixelsize=21:antialias=true:autohint=true";
-//static char *font2[] = { "PxPlus IBM VGA 8x16:pixelsize=21:antialias=true:autohint=true:weight=light" };
 static int borderpx = 8; // this inner space like padding
-
 /*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
@@ -307,9 +301,11 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_J,           zoom,           {.f = -1} },
 	{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
 	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
-	{ MODKEY|ShiftMask,     XK_L,           externalpipe,   {.v = openurlcmd } },
-	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
-	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
+	//{ MODKEY|ShiftMask,     XK_L,           externalpipe,   {.v = openurlcmd } },
+	//{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
+	//{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
+    { MODKEY|ShiftMask,     XK_L,           linespace, {.i = -1} }, // increase line spacing
+    { MODKEY|ShiftMask,     XK_H,           linespace, {.i = +1} }, // decrease line spacing
 };
 
 /*
