@@ -1,5 +1,6 @@
 -- this is my own config for neovim
 -- this down lines are my own configs
+
 -- Custom commands
 vim.api.nvim_create_user_command('W', 'w', {})
 vim.api.nvim_create_user_command('Q', 'q', {})

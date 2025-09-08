@@ -2,8 +2,8 @@
 
 # Pick directory
 #selected=$(find ~/zephyr/php/phpoop/ ~/zephyr/php/phpoop/gio ~/project -maxdepth 3 -type d 2>/dev/null | fzf)
-#selected=$(find ~/zephyr/php/phpoop/ -maxdepth 3 -type d 2>/dev/null | fzf)
-selected=$(find ~/projects/php/phpoop/ -maxdepth 1 -type d 2>/dev/null | fzf)
+selected=$(find ~/projects/php/phpoop/ -maxdepth 3 -type d 2>/dev/null | fzf)
+#selected=$(find ~/projects/php/phpoop/ -maxdepth 1 -type d 2>/dev/null | fzf)
 [[ -z "$selected" ]] && exit 0
 
 # Session name (no dots)
