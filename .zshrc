@@ -119,6 +119,9 @@ alias cout="xclip -selection clipboard -o"
 
 # this is for docker mycli
 alias mycli-docker='docker exec -it infra_mycli mycli -h db -u root '
+# screenshot
+#alias shot='flameshot gui -p ~/pix/sss/flameshot'
+
 
 
 #vim in bash super cool right # btw this is from luke smith

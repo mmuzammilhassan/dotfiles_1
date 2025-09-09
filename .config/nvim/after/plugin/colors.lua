@@ -13,13 +13,13 @@ function ColorMyPencils(color)
     -- if treesitter playground plugin installed then this bottom command works to
     -- :TSHighlightCapturesUnderCursor
     --
---    vim.api.nvim_set_hl(0, "Normal", { bg = "#13121c" })
---    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#13121c" })
-    --vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-    --vim.api.nvim_set_hl(0, "FzfLuaNormal", { bg = "none" })
-    --vim.api.nvim_set_hl(0, "FzfLuaBorder", { bg = "none" })
-    --vim.api.nvim_set_hl(0, "FzfLuaTitle", { bg = "none" })
-    --vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = "none" }) -- ✅ this one exists
+    vim.api.nvim_set_hl(0, "Normal", { bg = "#faf4ed" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#faf4ed" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#faf4ed" })
+    vim.api.nvim_set_hl(0, "FzfLuaNormal", { bg = "#faf4ed" })
+    vim.api.nvim_set_hl(0, "FzfLuaBorder", { bg = "#faf4ed" })
+    vim.api.nvim_set_hl(0, "FzfLuaTitle", { bg = "#faf4ed" })
+    vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = "#faf4ed" }) -- ✅ this one exists
 
     -- vim.api.nvim_set_hl(0, "Normal", { bg = "#050505" })
     --vim.api.nvim_set_hl(0, "NormalFloat", { fg ="#5c5c5c", bg = "#151320" })
