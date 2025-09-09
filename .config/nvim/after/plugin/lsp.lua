@@ -42,14 +42,22 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- LSP servers mapped to filetypes
 local lspconfig = require('lspconfig')
-local servers = {
-  php = "intelephense",
---  javascript = "tsserver",  -- fixed: tsserver not ts_ls
---  typescriptreact = "tsserver",
-  html = "html",
-  lua = "lua_ls",
-  css = "cssls",
-}
+    local servers = {
+        php = "intelephense",
+        --  javascript = "tsserver",  -- fixed: tsserver not ts_ls
+        --  typescriptreact = "tsserver",
+        html = "html",
+        lua = "lua_ls",
+        css = "cssls",
+    }
+--lspconfig.intelephense.setup({
+--    -- other configurations
+--    init_options = {
+--        licenceKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9==" -- Replace with your actual key
+--        -- or, for better security:
+--        -- licenceKey = os.getenv("INTELEPHENSE_LICENSE_KEY")
+--    }
+--})
 
 -- Autocmd to load servers only when filetype is used
 for ft, server in pairs(servers) do
