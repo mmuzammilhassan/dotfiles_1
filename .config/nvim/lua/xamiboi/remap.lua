@@ -80,12 +80,13 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 --vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
+
 --tmux-sessionizer Alt+f
 vim.keymap.set("n", "<M-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>fa", vim.lsp.buf.format)
 
 -- This is using blade-formatter
-vim.api.nvim_set_keymap('n', '<leader>mf', ':!blade-formatter %<CR>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>fb", ":!blade-formatter %<CR>", { noremap = true })
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
@@ -101,7 +102,7 @@ vim.keymap.set(
     "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
 )
 
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/xamiboi/packer.lua<CR>");
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/dotfiles/.config/nvim/lua/xamiboi/lazy.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 vim.keymap.set("n", "<leader><leader>", function()

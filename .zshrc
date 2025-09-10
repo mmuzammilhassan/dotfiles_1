@@ -206,7 +206,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#999999"
 
 # TMUX-SESSIONIZER WORKS FROM CLI
 bindkey -s '\ef' "tmux-sessionizer\n"
-bindkey -s '\eh' "tmux-sessionizer -s 0\n"
-bindkey -s '\et' "tmux-sessionizer -s 1\n"
-bindkey -s '\en' "tmux-sessionizer -s 2\n"
-bindkey -s '\es' "tmux-sessionizer -s 3\n"
+#bindkey -s '\eh' "tmux-sessionizer -t 0\n"
+#bindkey -s '\et' "tmux-sessionizer -t 1\n"
+#bindkey -s '\en' "tmux-sessionizer -t 2\n"
+#bindkey -s '\es' "tmux-sessionizer -t 3\n"
