@@ -47,6 +47,7 @@ services:
   gio_app:
     build: ../gio/v36/docker
     container_name: gio_app
+    restart: always
     volumes:
       - ../gio/v36/src:/var/www
     depends_on:
@@ -58,6 +59,7 @@ services:
   gio_nginx:
     image: nginx:alpine
     container_name: gio_nginx
+    restart: always
     ports:
       - "8000:80"
     volumes:

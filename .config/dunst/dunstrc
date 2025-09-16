@@ -21,8 +21,8 @@
     foreground = "#ffffff"
 
 [urgency_normal]
-    background = "#faf4ed"
-    foreground = "#000000"
+    background = "#191724"
+    foreground = "#ffffff"
 
 [urgency_critical]
     background = "#900000"

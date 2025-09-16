@@ -376,7 +376,8 @@ zoomreset(const Arg *arg)
 }
 
 // chatgpt says for linespacing key
-void linespacereset(const Arg *arg)
+void 
+linespacereset(const Arg *arg)
 {
     linespacing = defaultlinespacing;
     win.ch = ceilf(dc.font.height * chscale) + linespacing;
@@ -385,6 +386,7 @@ void linespacereset(const Arg *arg)
     ttyresize(win.w, win.h);
     redraw();
 }
+
 void linespaceabs(const Arg *arg) {
     linespacing = arg->i;
     if (linespacing < 0)
@@ -397,9 +399,19 @@ void linespaceabs(const Arg *arg) {
     xclear(0, 0, win.w, win.h);
     ttyresize(win.w, win.h);
     redraw();
+
+	xunloadfonts();
+	xloadfonts(usedfont, arg->f);
+	xloadsparefonts();
+	cresize(0, 0);
+	redraw();
+	xhints();
 }
-void linespace(const Arg *arg) {
+
+void linespace(const Arg *arg)
+{
     Arg larg;
+
     larg.i = linespacing + arg->i;
     linespaceabs(&larg);
 }
