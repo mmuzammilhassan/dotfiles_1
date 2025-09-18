@@ -10,6 +10,67 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
+
+-- this is working but i use leader+nf
+-- MINIMAL SESSION-ONLY TRACKING OF NETRW CURSOR
+--local last_netrw_pos = {}
+--
+--local netrw_cursor = {}
+--
+--vim.api.nvim_create_autocmd("BufLeave", {
+--  callback = function()
+--    if vim.bo.filetype == "netrw" then
+--      netrw_cursor[vim.api.nvim_buf_get_name(0)] = vim.api.nvim_win_get_cursor(0)
+--    end
+--  end,
+--})
+--
+--vim.api.nvim_create_autocmd("FileType", {
+--  pattern = "netrw",
+--  callback = function()
+--    local name = vim.api.nvim_buf_get_name(0)
+--    local pos = netrw_cursor[name]
+--    if pos then
+--      vim.defer_fn(function()
+--        if pos[1] <= vim.api.nvim_buf_line_count(0) then
+--          vim.api.nvim_win_set_cursor(0, pos)
+--        end
+--      end, 10)
+--    end
+--  end,
+--})
+
+-- Table to store netrw cursor positions per directory
+--
+--local netrw_positions = {}
+--
+---- Save position when leaving a netrw buffer
+--vim.api.nvim_create_autocmd("BufWinLeave", {
+--  pattern = "*",
+--  callback = function()
+--    if vim.bo.filetype == "netrw" then
+--      local dir = vim.fn.expand("%:p")
+--      local pos = vim.api.nvim_win_get_cursor(0)
+--      netrw_positions[dir] = pos
+--    end
+--  end,
+--})
+--
+---- Restore position when entering a netrw buffer
+--vim.api.nvim_create_autocmd("FileType", {
+--  pattern = "netrw",
+--  callback = function()
+--    vim.defer_fn(function()
+--      local dir = vim.fn.expand("%:p")
+--      local pos = netrw_positions[dir]
+--      if pos then
+--        pcall(vim.api.nvim_win_set_cursor, 0, pos)
+--      end
+--    end, 10)  -- small delay to let netrw render
+--  end,
+--})
+--
+
 -- FOLDING CODE AND SAVE THEM
 --vim.opt.foldmethod = "manual"  -- Important!
 --vim.opt.viewoptions:remove("options")
