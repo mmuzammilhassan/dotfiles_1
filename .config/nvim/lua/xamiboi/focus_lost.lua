@@ -2,31 +2,42 @@
 local timer = vim.loop.new_timer()
 
 vim.api.nvim_create_autocmd("FocusGained", {
-  pattern = "*",
-  callback = function()
-    timer:stop()
-    timer:start(10, 0, vim.schedule_wrap(function() -- default value was 100ms 
---      vim.wo.cursorline = true
-      vim.wo.relativenumber = true
-      vim.wo.number = true
---      vim.api.nvim_set_hl(0, "Normal", { bg="#08090d"})
-      vim.diagnostic.config({ virtual_text = true, signs = false })
-    end))
-  end,
+    pattern = "*",
+    callback = function()
+        timer:stop()
+        timer:start(10, 0, vim.schedule_wrap(function() -- default value was 100ms
+            --      vim.wo.cursorline = true
+            vim.wo.relativenumber = true
+            vim.wo.number = true
+            --      vim.api.nvim_set_hl(0, "Normal", { bg="#08090d"})
+            --      vim.diagnostic.config({ virtual_text = true, signs = true })
+            vim.diagnostic.config({
+                virtual_text = true,
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN]  = "",
+                        [vim.diagnostic.severity.HINT]  = "",
+                        [vim.diagnostic.severity.INFO]  = "",
+                    },
+                },
+            })
+        end))
+    end,
 })
 
 vim.api.nvim_create_autocmd("FocusLost", {
-  pattern = "*",
-  callback = function()
-    timer:stop()
-    timer:start(10, 0, vim.schedule_wrap(function() -- default value was 100ms 
---      vim.wo.cursorline = false
-      vim.wo.relativenumber = false
-      vim.wo.number = false
---      vim.api.nvim_set_hl(0, "Normal", { bg="#000000"})
-      vim.diagnostic.config({ virtual_text = false, signs = false })
-    end))
-  end,
+    pattern = "*",
+    callback = function()
+        timer:stop()
+        timer:start(10, 0, vim.schedule_wrap(function() -- default value was 100ms
+            --      vim.wo.cursorline = false
+            vim.wo.relativenumber = false
+            vim.wo.number = false
+            --      vim.api.nvim_set_hl(0, "Normal", { bg="#000000"})
+                    vim.diagnostic.config({ virtual_text = false, signs = false })
+        end))
+    end,
 })
 
 -- Define highlight groups
@@ -55,10 +66,10 @@ vim.api.nvim_create_autocmd("FocusLost", {
 
 -- for tmux unactive windows
 -- and add this line of code in tmux.conf  set -g focus-events on
--- uncomment down lines of code of you don't do to much browser or tmux movement 
+-- uncomment down lines of code of you don't do to much browser or tmux movement
 -- this will helpful
 
--- works fine but this one go shaky when i come back to tmux 
+-- works fine but this one go shaky when i come back to tmux
 --vim.api.nvim_create_autocmd("FocusGained", {
 --  pattern = "*",
 --  callback = function()

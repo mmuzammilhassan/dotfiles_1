@@ -44,7 +44,7 @@ require("lazy").setup({
     -- fzf-lua
     {
         "ibhagwan/fzf-lua",
---        dependencies = { "nvim-tree/nvim-web-devicons" }, -- optional, for icons
+        --        dependencies = { "nvim-tree/nvim-web-devicons" }, -- optional, for icons
         config = function()
             require("fzf-lua").setup({})
         end,
@@ -109,15 +109,26 @@ require("lazy").setup({
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-path" },
     { "hrsh7th/cmp-buffer" },
+    -- Snippets
     {
         "saadparwaiz1/cmp_luasnip",
-        event = "InsertEnter"
+        event = "InsertEnter",
+        {
+            "L3MON4D3/LuaSnip",
+            -- follow latest release.
+            version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+            -- install jsregexp (optional!).
+            build = "make install_jsregexp"
+        },
+        { "rafamadriz/friendly-snippets" },
+       -- cmp_luasnip: bridges LuaSnip with nvim-cmp (completion)
+       -- LuaSnip: your snippet engine
+       -- friendly-snippets: a library of prebuilt snippets for many languages
+
     },
+
     { "hrsh7th/cmp-nvim-lua" },
 
-    -- Snippets
-    { "L3MON4D3/LuaSnip" },
-    { "rafamadriz/friendly-snippets" },
 
     -- FOR LARAVEL
     {

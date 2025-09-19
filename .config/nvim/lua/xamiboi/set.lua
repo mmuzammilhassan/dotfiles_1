@@ -31,14 +31,14 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- cursorline things
+-- CURSORLINE THINGS
 vim.opt.cursorline = true
 --vim.opt.cursorcolumn = false
 
 --Source: :help 'statuscolumn' in Neovim
---vim.opt.statuscolumn = "%l %=%s" -- this is awesome but not perfect
+vim.opt.statuscolumn = " %l %=%s " -- this is awesome but not perfect
 --vim.opt.statuscolumn = "%l    " -- this is awesome but not perfect
-vim.opt.statuscolumn = " %l %=" -- this is awesome but not perfect
+--vim.opt.statuscolumn = " %l %=" -- this is awesome but not perfect
 
 
 vim.opt.tabstop = 4
