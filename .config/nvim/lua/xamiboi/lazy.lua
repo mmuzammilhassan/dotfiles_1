@@ -99,9 +99,18 @@ require("lazy").setup({
         event = { "BufReadPost", "BufNewFile" },
     },
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-        dependencies = { "williamboman/mason-lspconfig.nvim" },
+        dependencies = { "mason-org/mason-lspconfig.nvim" },
+        opts = {
+            ui = {
+                icons = {
+                    package_installed = "✓",
+                    package_pending = "➜",
+                    package_uninstalled = "✗"
+                }
+            }
+        }
     },
 
     -- Completion
@@ -131,60 +140,60 @@ require("lazy").setup({
 
 
     -- FOR LARAVEL
-    {
-        "adalessa/laravel.nvim",
-        dependencies = {
-            "tpope/vim-dotenv",
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-neotest/nvim-nio",
-            "ravitemer/mcphub.nvim", -- optional
-        },
-        cmd = { "Laravel" },
-        event = { "VeryLazy" },
-        opts = {
-            lsp_server = "intelephense", -- or "phpactor"
-            features = {
-                pickers = {
-                    provider = "fzf-lua", -- or "snacks", "telescope", "ui-select"
-                },
-            },
-        },
-        config = function(_, opts)
-            local Laravel = require("laravel")
-            Laravel.setup(opts)
+    --{
+    --    "adalessa/laravel.nvim",
+    --    dependencies = {
+    --        "tpope/vim-dotenv",
+    --        "MunifTanjim/nui.nvim",
+    --        "nvim-lua/plenary.nvim",
+    --        "nvim-neotest/nvim-nio",
+    --        "ravitemer/mcphub.nvim", -- optional
+    --    },
+    --    cmd = { "Laravel" },
+    --    event = { "VeryLazy" },
+    --    opts = {
+    --        lsp_server = "intelephense", -- or "phpactor"
+    --        features = {
+    --            pickers = {
+    --                provider = "fzf-lua", -- or "snacks", "telescope", "ui-select"
+    --            },
+    --        },
+    --    },
+    --    config = function(_, opts)
+    --        local Laravel = require("laravel")
+    --        Laravel.setup(opts)
 
-            local map = vim.keymap.set
+    --        local map = vim.keymap.set
 
-            -- Laravel Pickers
-            map("n", "<leader>ll", function() Laravel.pickers.laravel() end, { desc = "Laravel: Open Laravel Picker" })
-            map("n", "<C-g>", function() Laravel.commands.run("view:finder") end, { desc = "Laravel: Open View Finder" })
-            map("n", "<leader>la", function() Laravel.pickers.artisan() end, { desc = "Laravel: Open Artisan Picker" })
-            map("n", "<leader>lt", function() Laravel.commands.run("actions") end,
-                { desc = "Laravel: Open Actions Picker" })
-            map("n", "<leader>lr", function() Laravel.pickers.routes() end, { desc = "Laravel: Open Routes Picker" })
-            map("n", "<leader>lh", function() Laravel.run("artisan docs") end, { desc = "Laravel: Open Documentation" })
-            map("n", "<leader>lm", function() Laravel.pickers.make() end, { desc = "Laravel: Open Make Picker" })
-            map("n", "<leader>lc", function() Laravel.pickers.commands() end, { desc = "Laravel: Open Commands Picker" })
-            map("n", "<leader>lo", function() Laravel.pickers.resources() end,
-                { desc = "Laravel: Open Resources Picker" })
-            map("n", "<leader>lp", function() Laravel.commands.run("command_center") end,
-                { desc = "Laravel: Open Command Center" })
+    --        -- Laravel Pickers
+    --        map("n", "<leader>ll", function() Laravel.pickers.laravel() end, { desc = "Laravel: Open Laravel Picker" })
+    --        map("n", "<C-g>", function() Laravel.commands.run("view:finder") end, { desc = "Laravel: Open View Finder" })
+    --        map("n", "<leader>la", function() Laravel.pickers.artisan() end, { desc = "Laravel: Open Artisan Picker" })
+    --        map("n", "<leader>lt", function() Laravel.commands.run("actions") end,
+    --            { desc = "Laravel: Open Actions Picker" })
+    --        map("n", "<leader>lr", function() Laravel.pickers.routes() end, { desc = "Laravel: Open Routes Picker" })
+    --        map("n", "<leader>lh", function() Laravel.run("artisan docs") end, { desc = "Laravel: Open Documentation" })
+    --        map("n", "<leader>lm", function() Laravel.pickers.make() end, { desc = "Laravel: Open Make Picker" })
+    --        map("n", "<leader>lc", function() Laravel.pickers.commands() end, { desc = "Laravel: Open Commands Picker" })
+    --        map("n", "<leader>lo", function() Laravel.pickers.resources() end,
+    --            { desc = "Laravel: Open Resources Picker" })
+    --        map("n", "<leader>lp", function() Laravel.commands.run("command_center") end,
+    --            { desc = "Laravel: Open Command Center" })
 
-            -- Context-aware `gf` override
-            map("n", "gf", function()
-                local ok, res = pcall(function()
-                    if Laravel.app("gf").cursorOnResource() then
-                        Laravel.commands.run("gf")
-                        return
-                    end
-                end)
-                if not ok or not res then
-                    vim.cmd.normal({ "gf", bang = true })
-                end
-            end, { expr = false, noremap = true, desc = "Laravel: Context-aware gf" })
-        end,
-    }
+    --        -- Context-aware `gf` override
+    --        map("n", "gf", function()
+    --            local ok, res = pcall(function()
+    --                if Laravel.app("gf").cursorOnResource() then
+    --                    Laravel.commands.run("gf")
+    --                    return
+    --                end
+    --            end)
+    --            if not ok or not res then
+    --                vim.cmd.normal({ "gf", bang = true })
+    --            end
+    --        end, { expr = false, noremap = true, desc = "Laravel: Context-aware gf" })
+    --    end,
+    --}
 
     -- Optional (commented out)
     -- { "nvim-treesitter/playground", enabled = false },

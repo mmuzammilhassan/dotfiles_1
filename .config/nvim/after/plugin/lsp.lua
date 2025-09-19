@@ -41,56 +41,77 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- LSP servers mapped to filetypes
-local lspconfig = require('lspconfig')
 local servers = {
-    php = "intelephense",
+    php = {
+        name = "intelephense",
+        cmd = { "intelephense", "--stdio" },
+        settings = {
+            intelephense = {
+                environment = {
+                    phpVersion = "8.4",
+                }
+            }
+        },
+    },
+
+    -- Example: Add more servers here
+    -- lua = {
+    --     name = "lua_ls",
+    --     cmd = { "lua-language-server" },
+    --     root_dir = vim.fs.root(0, { ".git" }),
+    --     settings = { Lua = { diagnostics = { globals = { "vim" } } } },
+    -- },
+    --
     --  javascript = "tsserver",  -- fixed: tsserver not ts_ls
     --  typescriptreact = "tsserver",
-    html = "html",
-    lua = "lua_ls",
-    css = "cssls",
+    --  html = "html",
+    --  lua = "lua_ls",
+    --  css = "cssls",
 }
---lspconfig.intelephense.setup({
---    -- other configurations
---    init_options = {
---        licenceKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9==" -- Replace with your actual key
---        -- or, for better security:
---        -- licenceKey = os.getenv("INTELEPHENSE_LICENSE_KEY")
---    }
---})
 
--- Autocmd to load servers only when filetype is used
-for ft, server in pairs(servers) do
+-- Autocmd to lazy-load LSP using new vim.lsp.config and vim.lsp.start
+for ft, config in pairs(servers) do
     vim.api.nvim_create_autocmd("FileType", {
         pattern = ft,
         callback = function()
-            lspconfig[server].setup({
+            vim.lsp.start(vim.lsp.config({
+                name = config.name,
+                cmd = config.cmd,
+                root_dir = vim.fs.root(0, { ".git" }),
+                settings = config.settings,
                 capabilities = capabilities,
-            })
+            }))
         end,
     })
 end
-
 -- Mason: lazy-load only when needed
 require("mason").setup()
 require("mason-lspconfig").setup({
     --ensure_installed = { "intelephense", "tsserver", "tailwindcss", "lua_ls", "html", "cssls" },
-    ensure_installed = { "intelephense", "tailwindcss", "lua_ls", "html", "cssls" },
+    --ensure_installed = { "intelephense", "tailwindcss", "lua_ls", "html", "cssls" },
+    ensure_installed = { "intelephense" },
     automatic_installation = true,
 })
 
+--require('lspconfig').phpactor.setup({
+--  on_attach = function(client, bufnr)
+--    -- Add your keymaps or LSP UI logic here
+--  end,
+--  capabilities = require('cmp_nvim_lsp').default_capabilities(), -- if using cmp
+--})
+
 -- TailwindCSS extra root_dir setup
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "html", "php", "css", "javascript", "javascriptreact", "typescriptreact" },
-    callback = function()
-        lspconfig.tailwindcss.setup({
-            capabilities = capabilities,
-            root_dir = lspconfig.util.root_pattern(
-                "tailwind.config.js", "tailwind.config.ts", "postcss.config.js", "package.json", ".git"
-            ),
-        })
-    end,
-})
+--vim.api.nvim_create_autocmd("FileType", {
+--    pattern = { "html", "php", "css", "javascript", "javascriptreact", "typescriptreact" },
+--    callback = function()
+--        lspconfig.tailwindcss.setup({
+--            capabilities = capabilities,
+--            root_dir = lspconfig.util.root_pattern(
+--                "tailwind.config.js", "tailwind.config.ts", "postcss.config.js", "package.json", ".git"
+--            ),
+--        })
+--    end,
+--})
 
 require("luasnip").config.set_config {
     history = true,                          -- Allow jumping back to previous snippet placeholders

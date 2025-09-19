@@ -400,9 +400,9 @@ void linespaceabs(const Arg *arg) {
     ttyresize(win.w, win.h);
     redraw();
 
-	xunloadfonts();
-	xloadfonts(usedfont, arg->f);
-	xloadsparefonts();
+//	xunloadfonts();
+//	xloadfonts(usedfont, arg->f);
+//	xloadsparefonts();
 	cresize(0, 0);
 	redraw();
 	xhints();
