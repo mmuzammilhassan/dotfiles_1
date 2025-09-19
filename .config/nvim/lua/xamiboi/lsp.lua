@@ -21,14 +21,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- Keymaps only set when LSP is attached
         local opts = { buffer = event.buf }
+--      How to come back
+--      Vim has a built-in jump list. After gd, just press:
+--      <C-o> → go back
+--      <C-i> → go forward
+--      That’s the "toggle-like" navigation for all jumps (gd, :tag, /search, etc.).
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', '<leader>vws', vim.lsp.buf.workspace_symbol, opts)
-        vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts)
-        vim.keymap.set('n', '[d', vim.diagnostic.goto_next, opts)
-        vim.keymap.set('n', ']d', vim.diagnostic.goto_prev, opts)
-        vim.keymap.set('n', '<leader>vca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', '<leader>vrr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '<leader>vws', vim.lsp.buf.workspace_symbol, opts)
+
+         -- Diagnostics (stay minimal)
+        vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts)
+        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+
+        vim.keymap.set('n', '<leader>vca', vim.lsp.buf.code_action, opts)
         vim.keymap.set('n', '<leader>vrn', vim.lsp.buf.rename, opts)
         vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<leader>f', function()
@@ -37,84 +46,117 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
--- Capabilities for cmp
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- ========================
+-- Capabilities for nvim-cmp
+-- ========================
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- LSP servers mapped to filetypes
+-- Define LSP server configs (low-level API)
 local servers = {
-    php = {
-        name = "intelephense",
+    intelephense = {
+        filetypes = { "php" },
         cmd = { "intelephense", "--stdio" },
+        root_dir = function(fname)
+            return vim.fs.root(fname, { "composer.json", ".git" })
+        end,
         settings = {
             intelephense = {
                 environment = {
                     phpVersion = "8.4",
-                }
-            }
+                },
+            },
         },
     },
 
-    -- Example: Add more servers here
-    -- lua = {
-    --     name = "lua_ls",
-    --     cmd = { "lua-language-server" },
-    --     root_dir = vim.fs.root(0, { ".git" }),
-    --     settings = { Lua = { diagnostics = { globals = { "vim" } } } },
-    -- },
-    --
-    --  javascript = "tsserver",  -- fixed: tsserver not ts_ls
-    --  typescriptreact = "tsserver",
-    --  html = "html",
-    --  lua = "lua_ls",
-    --  css = "cssls",
+    lua_ls = {
+        filetypes = { "lua" },
+        cmd = { "lua-language-server" },
+        root_dir = function(fname)
+            return vim.fs.root(fname, { ".luarc.json", ".git" })
+        end,
+        settings = {
+            Lua = {
+                diagnostics = { globals = { "vim" } },
+                workspace = { checkThirdParty = false },
+                telemetry = { enable = false },
+            },
+        },
+    },
+
+    ts_ls = {
+        filetypes = { "javascript", "typescript", "typescriptreact" },
+        cmd = { "typescript-language-server", "--stdio" },
+        root_dir = function(fname)
+            return vim.fs.root(fname, { "package.json", ".git" })
+        end,
+    },
+
+    html = {
+        filetypes = { "html" },
+        cmd = { "vscode-html-language-server", "--stdio" },
+        root_dir = function(fname)
+            return vim.fs.root(fname, { "package.json", ".git" })
+        end,
+    },
+
+    cssls = {
+        filetypes = { "css", "scss", "less" },
+        cmd = { "vscode-css-language-server", "--stdio" },
+        root_dir = function(fname)
+            return vim.fs.root(fname, { "package.json", ".git" })
+        end,
+    },
+
+    emmet_ls = {
+        filetypes = { "html", "twig" },
+        cmd = { "emmet-ls", "--stdio" },
+        root_dir = function(fname)
+            return vim.fs.root(fname, { ".git" })
+        end,
+    },
+
+    tailwindcss = {
+        filetypes = { "html", "twig" }, -- only twig and html
+        cmd = { "tailwindcss-language-server", "--stdio" },
+        root_dir = function(fname)
+            return vim.fs.root(fname, {
+                "tailwind.config.js",
+                "tailwind.config.ts",
+                "postcss.config.js",
+                "package.json",
+                ".git",
+            })
+        end,
+    },
 }
 
--- Autocmd to lazy-load LSP using new vim.lsp.config and vim.lsp.start
-for ft, config in pairs(servers) do
+-- Register configs and start servers on demand
+for name, config in pairs(servers) do
+    vim.lsp.config[name] = vim.tbl_extend("force", config, {
+        capabilities = capabilities,
+    })
+
+    -- Lazy-load: start only when matching filetype opens
     vim.api.nvim_create_autocmd("FileType", {
-        pattern = ft,
-        callback = function()
-            vim.lsp.start(vim.lsp.config({
-                name = config.name,
-                cmd = config.cmd,
-                root_dir = vim.fs.root(0, { ".git" }),
-                settings = config.settings,
-                capabilities = capabilities,
-            }))
+        pattern = config.filetypes,
+        callback = function(args)
+            vim.lsp.start(vim.lsp.config[name], { bufnr = args.buf })
         end,
     })
 end
--- Mason: lazy-load only when needed
+
+-- Mason setup (still works fine for binaries)
 require("mason").setup()
 require("mason-lspconfig").setup({
-    --ensure_installed = { "intelephense", "tsserver", "tailwindcss", "lua_ls", "html", "cssls" },
-    --ensure_installed = { "intelephense", "tailwindcss", "lua_ls", "html", "cssls" },
-    ensure_installed = { "intelephense" },
+    ensure_installed = vim.tbl_keys(servers),
     automatic_installation = true,
 })
 
---require('lspconfig').phpactor.setup({
---  on_attach = function(client, bufnr)
---    -- Add your keymaps or LSP UI logic here
---  end,
---  capabilities = require('cmp_nvim_lsp').default_capabilities(), -- if using cmp
---})
-
--- TailwindCSS extra root_dir setup
---vim.api.nvim_create_autocmd("FileType", {
---    pattern = { "html", "php", "css", "javascript", "javascriptreact", "typescriptreact" },
---    callback = function()
---        lspconfig.tailwindcss.setup({
---            capabilities = capabilities,
---            root_dir = lspconfig.util.root_pattern(
---                "tailwind.config.js", "tailwind.config.ts", "postcss.config.js", "package.json", ".git"
---            ),
---        })
---    end,
---})
-
+-- ========================
+-- SNIPPETS + CMP
+-- ========================
 require("luasnip").config.set_config {
-    history = true,                          -- Allow jumping back to previous snippet placeholders
+    history = true,                            -- Allow jumping back to previous snippet placeholders
     updateevents = "TextChanged,TextChangedI", -- Live updating of snippet
     enable_autosnippets = true,
 }

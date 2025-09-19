@@ -2,19 +2,19 @@
 --vim.g.loaded_netrwPlugin = 1
 
 -- Netrw clean UI tweaks
-vim.g.netrw_banner = 0              -- hide the banner (top help text)
-vim.g.netrw_liststyle = 3           -- tree view by default
 --vim.g.netrw_browse_split = 4        -- don't auto-split (you control with v/s)
 --vim.g.netrw_winsize = 80            -- default width for the tree
 --vim.g.netrw_altv = 1                -- Open vertical splits by default
-
-vim.cmd([[
-    autocmd FileType netrw setlocal number
-    autocmd FileType netrw setlocal relativenumber
-    autocmd FileType netrw setlocal wrap
-]])
-    --autocmd FileType netrw setlocal colorcolumn=0
-    --autocmd FileType netrw setlocal nocursorline
+----vim.g.netrw_banner = 0              -- hide the banner (top help text)
+----vim.g.netrw_liststyle = 3           -- tree view by default
+----
+----vim.cmd([[
+----    autocmd FileType netrw setlocal number
+----    autocmd FileType netrw setlocal relativenumber
+----    autocmd FileType netrw setlocal wrap
+----    autocmd FileType netrw setlocal colorcolumn=0
+----    autocmd FileType netrw setlocal nocursorline
+----]])
 
 
 --:Ex with tree-like view

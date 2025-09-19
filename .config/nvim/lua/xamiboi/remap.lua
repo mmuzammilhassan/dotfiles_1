@@ -50,7 +50,7 @@ vim.keymap.set('n', '<Left>', '<cmd>vertical resize -5<cr>', { desc = "Increase 
 
 vim.g.mapleader = " "
 --vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>pn", vim.cmd.Ex)
+--vim.keymap.set("n", "<leader>pn", vim.cmd.Ex)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -86,7 +86,7 @@ vim.keymap.set("n", "<M-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>fa", vim.lsp.buf.format)
 
 -- This is using blade-formatter
-vim.api.nvim_set_keymap("n", "<leader>fb", ":!blade-formatter %<CR>", { noremap = true })
+--vim.api.nvim_set_keymap("n", "<leader>fb", ":!blade-formatter %<CR>", { noremap = true })
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")

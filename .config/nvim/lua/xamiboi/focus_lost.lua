@@ -35,7 +35,10 @@ vim.api.nvim_create_autocmd("FocusLost", {
             vim.wo.relativenumber = false
             vim.wo.number = false
             --      vim.api.nvim_set_hl(0, "Normal", { bg="#000000"})
-                    vim.diagnostic.config({ virtual_text = false, signs = false })
+            vim.diagnostic.config({ 
+                virtual_text = false, 
+                signs = false,
+            })
         end))
     end,
 })

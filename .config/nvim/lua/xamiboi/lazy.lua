@@ -1,18 +1,40 @@
---require("lazy").setup({
---  spec = { ... },
---  performance = {
---    rtp = {
---      disabled_plugins = {
---        "gzip", "tarPlugin", "tohtml", "tutor", "zipPlugin",
---      },
---    },
---  },
---})
---
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
 require("lazy").setup({
-    -- Core
-    { "nvim-lua/plenary.nvim", lazy = true },
-    --    { "wbthomason/packer.nvim", enabled = false }, -- legacy, don't use anymore
+  spec = {
+    { import = "plugins" },
+  },
+  defaults = { lazy = true },
+  checker = { enabled = false },
+  ui = { border = "rounded" },
+  performance = {
+    cache = { enabled = true },
+    rtp = {
+      disabled_plugins = {
+        "netrwPlugin",
+        "gzip",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
 
     --    -- DAP FOR PHP
     --    {
@@ -41,105 +63,9 @@ require("lazy").setup({
     --        end,
     --    },
 
-    -- fzf-lua
-    {
-        "ibhagwan/fzf-lua",
-        --        dependencies = { "nvim-tree/nvim-web-devicons" }, -- optional, for icons
-        config = function()
-            require("fzf-lua").setup({})
-        end,
-    },
-
-    -- Colorscheme
-    {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        priority = 1000,
-        config = function()
-            vim.cmd("colorscheme rose-pine-dawn")
-        end
-    },
-
-    -- Colorizer
-    {
-        "NvChad/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup({
-                filetypes = { "*" },
-                user_default_options = {
-                    names = false,
-                    RRGGBBAA = true,
-                    rgb_fn = true,
-                    mode = "background",
-                },
-            })
-        end,
-    },
-
-    -- Treesitter
-    {
-        "nvim-treesitter/nvim-treesitter",
-        event = { "BufReadPost", "BufNewFile" },
-        build = ":TSUpdate",
-    },
-
-    -- Harpoon 2
-    {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        dependencies = { "nvim-lua/plenary.nvim" },
-    },
-
-    -- Undo tree
-    { "mbbill/undotree" },
-
-    -- LSP
-    {
-        "neovim/nvim-lspconfig",
-        event = { "BufReadPost", "BufNewFile" },
-    },
-    {
-        "mason-org/mason.nvim",
-        cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-        dependencies = { "mason-org/mason-lspconfig.nvim" },
-        opts = {
-            ui = {
-                icons = {
-                    package_installed = "✓",
-                    package_pending = "➜",
-                    package_uninstalled = "✗"
-                }
-            }
-        }
-    },
-
-    -- Completion
-    { "hrsh7th/nvim-cmp" },
-    { "hrsh7th/cmp-nvim-lsp" },
-    { "hrsh7th/cmp-path" },
-    { "hrsh7th/cmp-buffer" },
-    -- Snippets
-    {
-        "saadparwaiz1/cmp_luasnip",
-        event = "InsertEnter",
-        {
-            "L3MON4D3/LuaSnip",
-            -- follow latest release.
-            version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-            -- install jsregexp (optional!).
-            build = "make install_jsregexp"
-        },
-        { "rafamadriz/friendly-snippets" },
-       -- cmp_luasnip: bridges LuaSnip with nvim-cmp (completion)
-       -- LuaSnip: your snippet engine
-       -- friendly-snippets: a library of prebuilt snippets for many languages
-
-    },
-
-    { "hrsh7th/cmp-nvim-lua" },
-
 
     -- FOR LARAVEL
+
     --{
     --    "adalessa/laravel.nvim",
     --    dependencies = {
@@ -162,36 +88,7 @@ require("lazy").setup({
     --    config = function(_, opts)
     --        local Laravel = require("laravel")
     --        Laravel.setup(opts)
-
-    --        local map = vim.keymap.set
-
-    --        -- Laravel Pickers
-    --        map("n", "<leader>ll", function() Laravel.pickers.laravel() end, { desc = "Laravel: Open Laravel Picker" })
-    --        map("n", "<C-g>", function() Laravel.commands.run("view:finder") end, { desc = "Laravel: Open View Finder" })
-    --        map("n", "<leader>la", function() Laravel.pickers.artisan() end, { desc = "Laravel: Open Artisan Picker" })
-    --        map("n", "<leader>lt", function() Laravel.commands.run("actions") end,
-    --            { desc = "Laravel: Open Actions Picker" })
-    --        map("n", "<leader>lr", function() Laravel.pickers.routes() end, { desc = "Laravel: Open Routes Picker" })
-    --        map("n", "<leader>lh", function() Laravel.run("artisan docs") end, { desc = "Laravel: Open Documentation" })
-    --        map("n", "<leader>lm", function() Laravel.pickers.make() end, { desc = "Laravel: Open Make Picker" })
-    --        map("n", "<leader>lc", function() Laravel.pickers.commands() end, { desc = "Laravel: Open Commands Picker" })
-    --        map("n", "<leader>lo", function() Laravel.pickers.resources() end,
-    --            { desc = "Laravel: Open Resources Picker" })
-    --        map("n", "<leader>lp", function() Laravel.commands.run("command_center") end,
-    --            { desc = "Laravel: Open Command Center" })
-
-    --        -- Context-aware `gf` override
-    --        map("n", "gf", function()
-    --            local ok, res = pcall(function()
-    --                if Laravel.app("gf").cursorOnResource() then
-    --                    Laravel.commands.run("gf")
-    --                    return
-    --                end
-    --            end)
-    --            if not ok or not res then
-    --                vim.cmd.normal({ "gf", bang = true })
-    --            end
-    --        end, { expr = false, noremap = true, desc = "Laravel: Context-aware gf" })
+    --        ...
     --    end,
     --}
 
@@ -207,4 +104,5 @@ require("lazy").setup({
     --   dependencies = { "MunifTanjim/nui.nvim" },
     --   enabled = false,
     -- },
-})
+
+

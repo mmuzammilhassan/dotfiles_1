@@ -32,7 +32,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- CURSORLINE THINGS
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 --vim.opt.cursorcolumn = false
 
 --Source: :help 'statuscolumn' in Neovim
