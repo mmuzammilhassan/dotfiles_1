@@ -1,10 +1,17 @@
 return {
     {
-        "mason-org/mason.nvim",
-        build = ":MasonUpdate",
-        lazy = true,
-        config = true,
+        "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("xamiboi.lsp")
+        end,
     },
+    {
+    "mason-org/mason.nvim",
+    build = ":MasonUpdate",
+    lazy = true,
+    config = true,
+},
     {
         "mason-org/mason-lspconfig.nvim",
         cmd = { "Mason", "MasonInstall", "MasonUpdate" },

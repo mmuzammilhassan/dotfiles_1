@@ -12,7 +12,6 @@ vim.api.nvim_create_autocmd("FocusGained", {
             --      vim.api.nvim_set_hl(0, "Normal", { bg="#08090d"})
             --      vim.diagnostic.config({ virtual_text = true, signs = true })
             vim.diagnostic.config({
-                virtual_text = true,
                 signs = {
                     text = {
                         [vim.diagnostic.severity.ERROR] = "",
@@ -21,6 +20,19 @@ vim.api.nvim_create_autocmd("FocusGained", {
                         [vim.diagnostic.severity.INFO]  = "",
                     },
                 },
+                virtual_text = {
+                prefix = function(diagnostic)
+                    local icons = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN]  = "",
+                        [vim.diagnostic.severity.HINT]  = "",
+                        [vim.diagnostic.severity.INFO]  = "",
+                    }
+                    return icons[diagnostic.severity] or "●"
+                end,
+                spacing = 4, -- Optional: space between icon and text
+            },
+
             })
         end))
     end,

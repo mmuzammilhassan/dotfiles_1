@@ -2,7 +2,7 @@
 return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2", -- you were already on v2
-    dependencies = { "nvim-lua/plenary.nvim", "ibhagwan/fzf-lua" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
         { "<leader>ha", function() require("harpoon"):list():add() end,                                    desc = "Harpoon add file" },
         { "<leader>hh", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "Harpoon quick menu" },
@@ -15,30 +15,37 @@ return {
         { "<C-S-P>",    function() require("harpoon"):list():prev() end,                                   desc = "Harpoon prev file" },
         { "<C-S-N>",    function() require("harpoon"):list():next() end,                                   desc = "Harpoon next file" },
 
-        -- Your custom fzf-lua integration
+        -- Your custom snacks file navigation only for harpoon2
         {
             "<leader>hp",
             function()
                 local harpoon = require("harpoon")
-                local entries = {}
-                for _, item in ipairs(harpoon:list().items) do
-                    table.insert(entries, item.value)
-                end
-                require("fzf-lua").fzf_exec(entries, {
-                    prompt = "Harpoon> ",
-                    previewer = "builtin",
+                local entries = vim
+                    .iter(harpoon:list().items)
+                    :filter(function(item) return item.value end)
+                    :enumerate()
+                    :map(function(i, item)
+                        return {
+                            file = item.value,
+                            text = string.format("[%d] %s", i, vim.fn.fnamemodify(item.value, ":t")),
+                        }
+                    end)
+                    :totable()
+
+                require("snacks.picker")({
+                    title = "Harpoon",
+                    items = entries,
+                    preview = "file",
                     actions = {
                         ["default"] = function(selected)
-                            vim.cmd("edit " .. selected[1])
+                            if selected and selected.file then
+                                vim.cmd.edit(vim.fn.fnameescape(selected.file))
+                            end
                         end,
                     },
                 })
             end,
-            desc = "Open Harpoon with fzf-lua",
+            desc = "Open Harpoon with Snacks UI",
         },
     },
-    config = function()
-        local harpoon = require("harpoon")
-        harpoon:setup() -- REQUIRED
-    end,
 }

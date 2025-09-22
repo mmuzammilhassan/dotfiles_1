@@ -13,7 +13,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
                     [vim.diagnostic.severity.INFO]  = "",
                 },
             },
-            virtual_text = true,
+            --virtual_text = true,
+            virtual_text = {
+                prefix = function(diagnostic)
+                    local icons = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN]  = "",
+                        [vim.diagnostic.severity.HINT]  = "",
+                        [vim.diagnostic.severity.INFO]  = "",
+                    }
+                    return icons[diagnostic.severity] or "●"
+                end,
+                spacing = 4, -- Optional: space between icon and text
+            },
             underline = true,
             update_in_insert = true,
             severity_sort = true,
@@ -21,18 +33,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- Keymaps only set when LSP is attached
         local opts = { buffer = event.buf }
---      How to come back
---      Vim has a built-in jump list. After gd, just press:
---      <C-o> → go back
---      <C-i> → go forward
---      That’s the "toggle-like" navigation for all jumps (gd, :tag, /search, etc.).
+        --      How to come back
+        --      Vim has a built-in jump list. After gd, just press:
+        --      <C-o> → go back
+        --      <C-i> → go forward
+        --      That’s the "toggle-like" navigation for all jumps (gd, :tag, /search, etc.).
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', '<leader>vrr', vim.lsp.buf.references, opts)
         vim.keymap.set('n', '<leader>vws', vim.lsp.buf.workspace_symbol, opts)
 
-         -- Diagnostics (stay minimal)
+        -- Diagnostics (stay minimal)
         vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts)
         vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
         vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
@@ -72,7 +84,7 @@ local servers = {
         filetypes = { "lua" },
         cmd = { "lua-language-server" },
         root_dir = function(fname)
-            return vim.fs.root(fname, { ".luarc.json", ".git" })
+            return vim.fs.root(fname, { ".git", ".luarc.json", })
         end,
         settings = {
             Lua = {
@@ -87,7 +99,7 @@ local servers = {
         filetypes = { "javascript", "typescript", "typescriptreact" },
         cmd = { "typescript-language-server", "--stdio" },
         root_dir = function(fname)
-            return vim.fs.root(fname, { "package.json", ".git" })
+            return vim.fs.root(fname, { ".git", "package.json", }) or vim.fn.getcwd()
         end,
     },
 
@@ -95,20 +107,44 @@ local servers = {
         filetypes = { "html" },
         cmd = { "vscode-html-language-server", "--stdio" },
         root_dir = function(fname)
-            return vim.fs.root(fname, { "package.json", ".git" })
+            return vim.fs.root(fname, { ".git", "package.json", }) or vim.fn.getcwd()
         end,
     },
 
     cssls = {
-        filetypes = { "css", "scss", "less" },
+        filetypes = { "html", "css", "scss", "less" },
         cmd = { "vscode-css-language-server", "--stdio" },
         root_dir = function(fname)
-            return vim.fs.root(fname, { "package.json", ".git" })
+            return vim.fs.root(fname, { ".git", "package.json", }) or vim.fn.getcwd()
         end,
     },
 
+    twiggy_language_server = {
+        filetypes = { "twig" },
+        cmd = { "twiggy-language-server", "--stdio" },
+        root_dir = function(fname)
+            return vim.fs.root(fname, {
+                ".git",
+                "composer.json",
+                "symfony.lock",
+                "package.json",
+            }) or vim.fn.getcwd()
+        end,
+        settings = {
+            twiggy = {
+                framework = "generic",   -- "symfony" if you’re in Symfony project
+                phpExecutable = "/usr/bin/php",
+                symfonyConsolePath = "", -- set empty string instead of nil
+                diagnostics = {
+                    twigCsFixer = false, -- avoids null crash
+                },
+            },
+        },
+    },
+
     emmet_ls = {
-        filetypes = { "html", "twig" },
+        -- filetypes = { "html", "twig" },
+        filetypes = { "twig" },
         cmd = { "emmet-ls", "--stdio" },
         root_dir = function(fname)
             return vim.fs.root(fname, { ".git" })
@@ -116,17 +152,18 @@ local servers = {
     },
 
     tailwindcss = {
-        filetypes = { "html", "twig" }, -- only twig and html
+        --filetypes = { "html", "twig", "php", "css", "javascriptreact", "typescriptreact" },
+        filetypes = { "html" }, -- only twig and html
         cmd = { "tailwindcss-language-server", "--stdio" },
-        root_dir = function(fname)
-            return vim.fs.root(fname, {
-                "tailwind.config.js",
-                "tailwind.config.ts",
-                "postcss.config.js",
-                "package.json",
-                ".git",
-            })
-        end,
+        --        root_dir = function(fname)
+        --            return vim.fs.root(fname, {
+        --                ".git",
+        --                "tailwind.config.js",
+        --                "tailwind.config.ts",
+        --                "postcss.config.js",
+        --                "package.json",
+        --            })
+        --        end,
     },
 }
 
@@ -150,58 +187,4 @@ require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = vim.tbl_keys(servers),
     automatic_installation = true,
-})
-
--- ========================
--- SNIPPETS + CMP
--- ========================
-require("luasnip").config.set_config {
-    history = true,                            -- Allow jumping back to previous snippet placeholders
-    updateevents = "TextChanged,TextChangedI", -- Live updating of snippet
-    enable_autosnippets = true,
-}
-
-require("luasnip.loaders.from_vscode").lazy_load()
-
--- nvim-cmp lazy setup (only in Insert mode)
-vim.api.nvim_create_autocmd("InsertEnter", {
-    once = true,
-    callback = function()
-        local cmp = require("cmp")
-        local luasnip = require("luasnip")
-
-        cmp.setup({
-            snippet = {
-                expand = function(args) luasnip.lsp_expand(args.body) end,
-            },
-            mapping = cmp.mapping.preset.insert({
-                ['<Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_next_item()
-                    elseif luasnip.expand_or_jumpable() then
-                        luasnip.expand_or_jump()
-                    else
-                        fallback()
-                    end
-                end, { "i", "s" }),
-                ['<S-Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_prev_item()
-                    elseif luasnip.jumpable(-1) then
-                        luasnip.jump(-1)
-                    else
-                        fallback()
-                    end
-                end, { "i", "s" }),
-                ['<C-Space>'] = cmp.mapping.complete(),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
-            }),
-            sources = cmp.config.sources({
-                { name = "nvim_lsp" },
-                { name = "luasnip", keyword_length = 2 },
-                { name = "buffer",  keyword_length = 3 },
-                { name = "path" },
-            }),
-        })
-    end,
 })
