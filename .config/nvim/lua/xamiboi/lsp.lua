@@ -96,12 +96,20 @@ local servers = {
     },
 
     ts_ls = {
-        filetypes = { "javascript", "typescript", "typescriptreact" },
+        filetypes = { "vue", "javascript", "typescript", "typescriptreact" },
         cmd = { "typescript-language-server", "--stdio" },
         root_dir = function(fname)
             return vim.fs.root(fname, { ".git", "package.json", }) or vim.fn.getcwd()
         end,
     },
+
+--    vue_ls = {
+--        filetypes = { "vue", "javascript" },
+--        cmd = { "vue-language-server", "--stdio" },
+--        root_dir = function(fname)
+--            return vim.fs.root(fname, { ".git", "package.json", }) or vim.fn.getcwd()
+--        end,
+--    },
 
     html = {
         filetypes = { "html" },
@@ -112,39 +120,39 @@ local servers = {
     },
 
     cssls = {
-        filetypes = { "html", "css", "scss", "less" },
+        filetypes = { "css", "scss", "less" },
         cmd = { "vscode-css-language-server", "--stdio" },
         root_dir = function(fname)
             return vim.fs.root(fname, { ".git", "package.json", }) or vim.fn.getcwd()
         end,
     },
 
-    twiggy_language_server = {
-        filetypes = { "twig" },
-        cmd = { "twiggy-language-server", "--stdio" },
-        root_dir = function(fname)
-            return vim.fs.root(fname, {
-                ".git",
-                "composer.json",
-                "symfony.lock",
-                "package.json",
-            }) or vim.fn.getcwd()
-        end,
-        settings = {
-            twiggy = {
-                framework = "generic",   -- "symfony" if you’re in Symfony project
-                phpExecutable = "/usr/bin/php",
-                symfonyConsolePath = "", -- set empty string instead of nil
-                diagnostics = {
-                    twigCsFixer = false, -- avoids null crash
-                },
-            },
-        },
-    },
+    --twiggy_language_server = {
+    --    filetypes = { "twig" },
+    --    cmd = { "twiggy-language-server", "--stdio" },
+    --    root_dir = function(fname)
+    --        return vim.fs.root(fname, {
+    --            ".git",
+    --            "composer.json",
+    --            "symfony.lock",
+    --            "package.json",
+    --        }) or vim.fn.getcwd()
+    --    end,
+    --    settings = {
+    --        twiggy = {
+    --            framework = "generic",   -- "symfony" if you’re in Symfony project
+    --            phpExecutable = "/usr/bin/php",
+    --            symfonyConsolePath = "", -- set empty string instead of nil
+    --            diagnostics = {
+    --                twigCsFixer = false, -- avoids null crash
+    --            },
+    --        },
+    --    },
+    --},
 
     emmet_ls = {
         -- filetypes = { "html", "twig" },
-        filetypes = { "twig" },
+        filetypes = { "twig", },
         cmd = { "emmet-ls", "--stdio" },
         root_dir = function(fname)
             return vim.fs.root(fname, { ".git" })
@@ -152,8 +160,7 @@ local servers = {
     },
 
     tailwindcss = {
-        --filetypes = { "html", "twig", "php", "css", "javascriptreact", "typescriptreact" },
-        filetypes = { "html" }, -- only twig and html
+        filetypes = { "html" },
         cmd = { "tailwindcss-language-server", "--stdio" },
         --        root_dir = function(fname)
         --            return vim.fs.root(fname, {

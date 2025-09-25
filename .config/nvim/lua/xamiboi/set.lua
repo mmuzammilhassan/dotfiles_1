@@ -36,7 +36,7 @@ vim.opt.cursorline = false
 --vim.opt.cursorcolumn = false
 
 --Source: :help 'statuscolumn' in Neovim
-vim.opt.statuscolumn = " %l %=%s " -- this is awesome but not perfect
+vim.opt.statuscolumn = " %l %=%s" -- this is awesome but not perfect
 --vim.opt.statuscolumn = "%l    " -- this is awesome but not perfect
 --vim.opt.statuscolumn = " %l %=" -- this is awesome but not perfect
 
