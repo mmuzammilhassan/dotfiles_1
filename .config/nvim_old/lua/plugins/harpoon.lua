@@ -12,8 +12,8 @@ return {
         { "<C-n>",      function() require("harpoon"):list():select(3) end,                                desc = "Harpoon file 3" },
         { "<C-s>",      function() require("harpoon"):list():select(4) end,                                desc = "Harpoon file 4" },
 
---        { "<C-S-P>",    function() require("harpoon"):list():prev() end,                                   desc = "Harpoon prev file" },
---        { "<C-S-N>",    function() require("harpoon"):list():next() end,                                   desc = "Harpoon next file" },
+        { "<C-S-P>",    function() require("harpoon"):list():prev() end,                                   desc = "Harpoon prev file" },
+        { "<C-S-N>",    function() require("harpoon"):list():next() end,                                   desc = "Harpoon next file" },
 
         -- Your custom snacks file navigation only for harpoon2
         {

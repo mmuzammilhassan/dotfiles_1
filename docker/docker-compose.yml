@@ -12,7 +12,7 @@ services:
     ports:
       - "127.0.0.1:3306:3306" # ← add this line 
     volumes:
-      - ../storage/mariadb_data:/var/lib/mysql
+      - ..gio/storage/mariadb_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: myproject
@@ -45,11 +45,11 @@ services:
 
   # GIO PHP App
   gio_app:
-    build: ../gio/v36/docker
+    build: ../gio/docker
     container_name: gio_app
     restart: always
     volumes:
-      - ../gio/v36/src:/var/www
+      - ../gio:/var/www            # ✅ Full project
     depends_on:
       - db
     networks:
@@ -63,8 +63,8 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ../gio/v36/src:/var/www
-      - ../gio/v36/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../gio:/var/www     # ✅ Just web root
+      - ../gio/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - gio_app
     networks:
@@ -76,7 +76,7 @@ services:
 #    build: ../yahoo_baba/docker
 #    container_name: yahoo_app
 #    volumes:
-#      - ../yahoo_baba/src:/var/www
+#      - ../yahoo_baba:/var/www
 #    depends_on:
 #      - db
 #    networks:
@@ -89,7 +89,7 @@ services:
 #    ports:
 #      - "8001:80"
 #    volumes:
-#      - ../yahoo_baba/src:/var/www
+#      - ../yahoo_baba/public:/var/www
 #      - ../yahoo_baba/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
 #    depends_on:
 #      - yahoo_app

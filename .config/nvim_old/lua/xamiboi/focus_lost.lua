@@ -2,40 +2,40 @@
 local timer = vim.loop.new_timer()
 
 vim.api.nvim_create_autocmd("FocusGained", {
-  pattern = "*",
-  callback = function()
-    timer:stop()
-    timer:start(10, 0, vim.schedule_wrap(function() -- default value was 100ms
-      --      vim.wo.cursorline = true
-      vim.wo.relativenumber = true
-      vim.wo.number = true
-      --      vim.api.nvim_set_hl(0, "Normal", { bg="#08090d"})
-      --      vim.diagnostic.config({ virtual_text = true, signs = true })
-      vim.diagnostic.config({
-        signs = {
-          text = {
-                  [vim.diagnostic.severity.ERROR] = "󰅚 ",
-                  [vim.diagnostic.severity.WARN] = "󰀪 ",
-                  [vim.diagnostic.severity.INFO] = "󰋽 ",
-                  [vim.diagnostic.severity.HINT] = "󰌶 ",
-          },
-        },
-        virtual_text = {
-          prefix = function(diagnostic)
-            local icons = {
-                  [vim.diagnostic.severity.ERROR] = "󰅚 ",
-                  [vim.diagnostic.severity.WARN] = "󰀪 ",
-                  [vim.diagnostic.severity.INFO] = "󰋽 ",
-                  [vim.diagnostic.severity.HINT] = "󰌶 ",
-            }
-            return icons[diagnostic.severity] or "●"
-          end,
-          spacing = 4, -- Optional: space between icon and text
-        },
+    pattern = "*",
+    callback = function()
+        timer:stop()
+        timer:start(10, 0, vim.schedule_wrap(function() -- default value was 100ms
+            --      vim.wo.cursorline = true
+            vim.wo.relativenumber = true
+            vim.wo.number = true
+            --      vim.api.nvim_set_hl(0, "Normal", { bg="#08090d"})
+            --      vim.diagnostic.config({ virtual_text = true, signs = true })
+            vim.diagnostic.config({
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN]  = "",
+                        [vim.diagnostic.severity.HINT]  = "",
+                        [vim.diagnostic.severity.INFO]  = "",
+                    },
+                },
+                virtual_text = {
+                prefix = function(diagnostic)
+                    local icons = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN]  = "",
+                        [vim.diagnostic.severity.HINT]  = "",
+                        [vim.diagnostic.severity.INFO]  = "",
+                    }
+                    return icons[diagnostic.severity] or "●"
+                end,
+                spacing = 4, -- Optional: space between icon and text
+            },
 
-      })
-    end))
-  end,
+            })
+        end))
+    end,
 })
 
 vim.api.nvim_create_autocmd("FocusLost", {
