@@ -2,10 +2,12 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false, -- loads immediately, but still lightweight
-    --@type snacks.Config
+    ---@type snacks.Config
     opts = {
 	    bigfile = { enabled = true },
-	    explorer = { enabled = true },
+        explorer = { enabled = true,
+            icons = true
+        },
 	    input = { enabled = true },
 	    notifier = {
 		    enabled = true,
@@ -41,7 +43,17 @@ https://github.com/mmuzammilhassan]],
             files = { hidden = true }, -- show hidden files
             grep = { hidden = true },  -- search hidden files too
         },
-        win = {
+        quickfile = { enabled = true },
+        scope = { enabled = true },
+        scroll = { enabled = true},
+        statuscolumn = { enabled = true },
+        words = { enabled = true },
+        styles = {
+            notification = {
+                -- wo = { wrap = true } -- Wrap notifications
+            },
+        },
+    win = {
             input = {
                 keys = {
                     ["<Tab>"] = { "list_down", mode = { "i", "n" } },

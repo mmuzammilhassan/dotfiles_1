@@ -2,8 +2,12 @@ local opts = { noremap = true, silent = true }
 -- local map = vim.keymap.set
 
 -- Custom commands
-vim.keymap.set("n", "W", ":write<CR>", { silent = true, desc = "Save file" })
-vim.keymap.set("n", "Wq", ":wq<CR>", { silent = true, desc = "wq" })
+--vim.keymap.set("n", "W", ":write<CR>", { silent = true, desc = "Save file" })
+--vim.keymap.set("n", "Wq", ":wq<CR>", { silent = true, desc = "wq" })
+
+-- restore original `s` behavior
+--vim.keymap.set("n", "s", "s", { noremap = true, silent = true })
+--vim.keymap.set("n", "S", "S", { noremap = true, silent = true })
 
 -- keymaps for resize windows with arrow keys
 vim.keymap.set('n', '<Up>', '<cmd>resize +1<cr>', { desc = "Increase Window Height" })
@@ -98,7 +102,7 @@ vim.keymap.set("n", "<C-a>", "ggVG", opts)
 -- delete backward
 -- w{number}db
 
-vim.keymap.set("n", "<C-P>", ':lua require("config.utils").toggle_go_test()<CR>', opts)
+--vim.keymap.set("n", "<C-P>", ':lua require("config.utils").toggle_go_test()<CR>', opts)
 
 -- Get highlighted line numbers in visual mode
 vim.keymap.set("v", "<leader>ln", ':lua require("config.utils").get_highlighted_line_numbers()<CR>', opts)

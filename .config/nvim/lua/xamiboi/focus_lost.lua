@@ -1,59 +1,86 @@
 -- Group for focus-based UI toggling
-local timer = vim.loop.new_timer()
-
-vim.api.nvim_create_autocmd("FocusGained", {
-  pattern = "*",
-  callback = function()
-    timer:stop()
-    timer:start(10, 0, vim.schedule_wrap(function() -- default value was 100ms
-      --      vim.wo.cursorline = true
-      vim.wo.relativenumber = true
-      vim.wo.number = true
-      --      vim.api.nvim_set_hl(0, "Normal", { bg="#08090d"})
-      --      vim.diagnostic.config({ virtual_text = true, signs = true })
-      vim.diagnostic.config({
-        signs = {
-          text = {
-                  [vim.diagnostic.severity.ERROR] = "󰅚 ",
-                  [vim.diagnostic.severity.WARN] = "󰀪 ",
-                  [vim.diagnostic.severity.INFO] = "󰋽 ",
-                  [vim.diagnostic.severity.HINT] = "󰌶 ",
-          },
-        },
-        virtual_text = {
-          prefix = function(diagnostic)
-            local icons = {
-                  [vim.diagnostic.severity.ERROR] = "󰅚 ",
-                  [vim.diagnostic.severity.WARN] = "󰀪 ",
-                  [vim.diagnostic.severity.INFO] = "󰋽 ",
-                  [vim.diagnostic.severity.HINT] = "󰌶 ",
-            }
-            return icons[diagnostic.severity] or "●"
-          end,
-          spacing = 4, -- Optional: space between icon and text
-        },
-
-      })
-    end))
-  end,
-})
-
-vim.api.nvim_create_autocmd("FocusLost", {
-    pattern = "*",
-    callback = function()
-        timer:stop()
-        timer:start(10, 0, vim.schedule_wrap(function() -- default value was 100ms
-            --      vim.wo.cursorline = false
-            vim.wo.relativenumber = false
-            vim.wo.number = false
-            --      vim.api.nvim_set_hl(0, "Normal", { bg="#000000"})
-            vim.diagnostic.config({ 
-                virtual_text = false, 
-                signs = false,
-            })
-        end))
-    end,
-})
+-- timer for debouncing
+-- last config
+------   local timer = vim.loop.new_timer()
+------   
+------   -- Focus gained
+------   vim.api.nvim_create_autocmd("FocusGained", {
+------     pattern = "*",
+------     callback = function()
+------       timer:stop()
+------       timer:start(10, 0, vim.schedule_wrap(function()
+------         vim.wo.relativenumber = true
+------         vim.wo.number = true
+------   
+------         vim.diagnostic.config({
+------           signs = {
+------             text = {
+------               [vim.diagnostic.severity.ERROR] = "󰅚 ",
+------               [vim.diagnostic.severity.WARN]  = "󰀪 ",
+------               [vim.diagnostic.severity.INFO]  = "󰋽 ",
+------               [vim.diagnostic.severity.HINT]  = "󰌶 ",
+------             },
+------             numhl = {
+------               [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+------               [vim.diagnostic.severity.WARN]  = "WarningMsg",
+------             },
+------           },
+------           virtual_text = {
+------             prefix = function(diagnostic)
+------               local icons = {
+------                 [vim.diagnostic.severity.ERROR] = "󰅚 ",
+------                 [vim.diagnostic.severity.WARN]  = "󰀪 ",
+------                 [vim.diagnostic.severity.INFO]  = "󰋽 ",
+------                 [vim.diagnostic.severity.HINT]  = "󰌶 ",
+------               }
+------               return icons[diagnostic.severity] or "●"
+------             end,
+------             spacing = 4,
+------           },
+------         })
+------       end))
+------     end,
+------   })
+------   
+------   -- Focus lost
+------   vim.api.nvim_create_autocmd("FocusLost", {
+------     pattern = "*",
+------     callback = function()
+------       timer:stop()
+------       timer:start(10, 0, vim.schedule_wrap(function()
+------         vim.wo.relativenumber = false
+------         vim.wo.number = false
+------         vim.diagnostic.config({
+------           virtual_text = false,
+------           signs = false,
+------         })
+------       end))
+------     end,
+------   })
+------   
+------   -- baseline diagnostic setup
+------   vim.diagnostic.config({
+------     virtual_text = true,
+------     underline = true,
+------     update_in_insert = false,
+------     severity_sort = true,
+------     float = {
+------       border = "rounded",
+------       source = true,
+------     },
+------     signs = {
+------       text = {
+------         [vim.diagnostic.severity.ERROR] = "󰅚 ",
+------         [vim.diagnostic.severity.WARN]  = "󰀪 ",
+------         [vim.diagnostic.severity.INFO]  = "󰋽 ",
+------         [vim.diagnostic.severity.HINT]  = "󰌶 ",
+------       },
+------       numhl = {
+------         [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+------         [vim.diagnostic.severity.WARN]  = "WarningMsg",
+------       },
+------     },
+------   })
 
 -- Define highlight groups
 --vim.cmd("highlight ActiveWindow guibg=#050505")
@@ -104,3 +131,32 @@ vim.api.nvim_create_autocmd("FocusLost", {
 --    vim.wo.number = false
 --  end,
 --})
+
+
+local timer = vim.loop.new_timer()
+
+-- Focus gained
+vim.api.nvim_create_autocmd("FocusGained", {
+  pattern = "*",
+  callback = function()
+    timer:stop()
+    timer:start(10, 0, vim.schedule_wrap(function()
+      vim.wo.relativenumber = true
+      vim.wo.number = true
+      --vim.wo.cursorline = true
+    end))
+  end,
+})
+
+-- Focus lost
+vim.api.nvim_create_autocmd("FocusLost", {
+  pattern = "*",
+  callback = function()
+    timer:stop()
+    timer:start(10, 0, vim.schedule_wrap(function()
+      vim.wo.relativenumber = false
+      vim.wo.number = false
+      --vim.wo.cursorline = false
+    end))
+  end,
+})

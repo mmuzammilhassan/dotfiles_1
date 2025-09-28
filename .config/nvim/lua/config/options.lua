@@ -5,7 +5,7 @@ vim.g.loaded_netrw = 1                                  -- disable netrw
 vim.g.loaded_netrwPlugin = 1                            --  disable netrw
 
 -- this is ctags for php only 
-vim.opt.tags = { "./.tags;" }
+-- vim.opt.tags = { "./.tags;" }
 
 vim.opt.incsearch = true                                -- make search act like search in modern browsers
 vim.opt.backup = false                                  -- creates a backup file
@@ -38,7 +38,7 @@ vim.opt.expandtab = true                                -- convert tabs to space
 vim.opt.shiftwidth = 2                                  -- the number of spaces inserted for each indentation
 vim.opt.number = true                                   -- set numbered lines
 vim.opt.relativenumber = true                           -- set relative numbered lines
-vim.opt.cursorline = false                              -- highlight the current line
+--vim.opt.cursorline = false                              -- highlight the current line
 --vim.opt.cursorcolumn = false                              -- highlight the current line
 vim.opt.colorcolumn = "80"
 vim.opt.breakindent = true                              -- wrap lines with indent
