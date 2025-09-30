@@ -21,6 +21,7 @@ return {
                     "bash",
                     "c",
                     "html",
+                    "twig",
                     "javascript",
                     "json",
                     "lua",

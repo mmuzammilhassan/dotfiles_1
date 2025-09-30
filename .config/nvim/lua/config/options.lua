@@ -38,14 +38,14 @@ vim.opt.expandtab = true                                -- convert tabs to space
 vim.opt.shiftwidth = 2                                  -- the number of spaces inserted for each indentation
 vim.opt.number = true                                   -- set numbered lines
 vim.opt.relativenumber = true                           -- set relative numbered lines
---vim.opt.cursorline = false                              -- highlight the current line
+vim.opt.cursorline = false                              -- highlight the current line
 --vim.opt.cursorcolumn = false                              -- highlight the current line
 vim.opt.colorcolumn = "80"
 vim.opt.breakindent = true                              -- wrap lines with indent
 vim.opt.numberwidth = 4                                 -- set number column width to 2 {default 4}
 vim.opt.signcolumn = "yes:1"                                                 --  show the sign column, otherwise it would shift the text each time
 vim.opt.wrap = false                                    -- display lines as one long line
-vim.opt.scrolloff = 8                                   -- Makes sure there are always eight lines of context
+vim.opt.scrolloff = 9                                   -- Makes sure there are always eight lines of context
 vim.opt.isfname:append("@-@")
 -- vim.opt.sidescrolloff = 8                               -- Makes sure there are always eight lines of context
 vim.opt.showcmd = false           -- Don't show the command in the last line

@@ -9,7 +9,7 @@ local blink = require("blink.cmp")
 
 return {
     cmd = { "intelephense", "--stdio" },
-    filetypes = { "php", "blade" },
+    filetypes = { "php", "blade", "twig" },
     root_markers = { "composer.json", ".git" },
     init_options = {
 --        licenceKey = get_intelephense_license(),

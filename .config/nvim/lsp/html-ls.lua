@@ -5,6 +5,7 @@ return {
     filetypes = {
         "html",
         "blade",
+        "twig",
         "javascriptreact",
         "typescriptreact",
         "svelte",

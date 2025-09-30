@@ -9,6 +9,7 @@ return {
         opts = {
             ensure_installed = {
                 -- LSP servers (matching your vim.lsp.enable() config)
+                "twiggy-language-server",      -- twig LSP
                 "lua-language-server",         -- Lua LSP
                 "gopls",                       -- Go LSP
                 "zls",                         -- Zig LSP

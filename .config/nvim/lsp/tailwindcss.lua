@@ -11,6 +11,7 @@ return {
         "svelte",
         "html",
         "blade",
+        "twig",
         "css",
         "scss",
     },

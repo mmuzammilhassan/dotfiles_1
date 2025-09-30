@@ -67,6 +67,10 @@ return {
             -- PHP/Laravel
             php = { "pint" },
 
+
+            -- Twig
+            twiggy = { "twiggy" },
+
             -- You can add more linters here as needed
             -- python = { "flake8", "mypy" },
             -- rust = { "clippy" },

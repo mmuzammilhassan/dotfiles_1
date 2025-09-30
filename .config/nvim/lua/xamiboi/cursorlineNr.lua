@@ -1,7 +1,7 @@
 ----  vim.cmd("highlight CursorLineNr guifg=NONE guibg=#eae2e3 gui=NONE")
-----
+--
 ---- Highlight for CursorLineNr
---local hl_on = "highlight CursorLineNr guifg=NONE guibg=#f2e9e1 gui=NONE"
+--local hl_on = "highlight CursorLineNr guifg=BOLD guibg=#393552 gui=BOLD"
 --local hl_off = "highlight clear CursorLineNr"
 --
 ---- Create a single autocommand group
@@ -23,4 +23,3 @@
 --
 ---- Set initial highlight
 --vim.cmd(hl_on)
---

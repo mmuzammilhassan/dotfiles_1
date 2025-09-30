@@ -36,9 +36,11 @@ return {
             html = { "prettier" },
             css = { "prettier" },
             scss = { "prettier" },
+            twig = { "prettier" },
 
             -- Python
             python = { "isort", "black" },
+
 
             -- PHP/Laravel
             php = { "pint" },
