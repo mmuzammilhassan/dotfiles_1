@@ -162,6 +162,14 @@ config.set('content.local_content_can_access_file_urls', False, 'file:///home/xa
 # Bindings for normal mode
 config.bind('tt', 'set colors.webpage.darkmode.enabled true')
 config.bind('aa', 'set colors.webpage.darkmode.enabled false')
+
+# Enable dark mode globally
+config.set('colors.webpage.darkmode.enabled', True)
+
+# Disable dark mode on YouTube/whatstapp
+config.set('colors.webpage.darkmode.enabled', False, 'https://www.youtube.com/*')
+config.set('colors.webpage.darkmode.enabled', False, 'https://www.web.whatsapp.com')
+
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
 config.bind('ch', 'open -t chatgpt.com')

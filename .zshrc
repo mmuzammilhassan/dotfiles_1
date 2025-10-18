@@ -185,7 +185,7 @@ alias n=nvim
 alias v=vim
 #alias qb=qutebrowser
 alias :q=exit
-alias l=ls -la
+alias l=ls -lh
 
 alias notes='nvim ~/NOTES.md'
 alias notes-today='echo "## $(date +"%B %d, %Y - %H:%M")" >> ~/NOTES.md && nvim + ~/NOTES.md'
