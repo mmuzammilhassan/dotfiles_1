@@ -214,7 +214,13 @@ drawmenu(void)
 	curpos = TEXTW(text) - TEXTW(&text[cursor]);
 	if ((curpos += lrpad / 2 - 1) < w) {
 		drw_setscheme(drw, scheme[SchemeNorm]);
-		drw_rect(drw, x + curpos, 2, 2, bh - 4, 1, 0);
+        // Original: Width is hardcoded to 2 pixels (thin bar)
+		//drw_rect(drw, x + curpos, 2, 2, bh - 4, 1, 0);
+        //drw_setscheme(drw, scheme[SchemeSel]); // Use Selection colors for the cursor
+        // Modified: Width is set to the character height, creating a block.
+        // The arguments for drw_rect are typically: 
+        // drw_rect(drw, x, y, width, height, filled, border)
+        drw_rect(drw, x + curpos, 2, 10, bh - 4, 1, 0);
 	}
 
 	if (lines > 0) {
@@ -870,18 +876,19 @@ setup(void)
 	inputw = MIN(inputw, mw/3);
 	match();
 
-	/* create menu window */
-	swa.override_redirect = True;
-	swa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
-	swa.border_pixel = 0;
-	swa.colormap = cmap;
-	swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask |
-		ButtonPressMask;
-	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, 0,
-	                    depth, InputOutput, visual,
-	                    CWOverrideRedirect | CWBackPixel | CWColormap |  CWEventMask | CWBorderPixel, &swa);
-	XSetClassHint(dpy, win, &ch);
-
+    /* create menu window */
+    swa.override_redirect = True;
+    swa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
+    swa.border_pixel = scheme[SchemeSel][ColBg].pixel; // <-- CHANGE 1: Set border color
+    swa.colormap = cmap;
+    swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask |
+        ButtonPressMask;
+    win = XCreateWindow(dpy, parentwin, x, y, mw, mh, border_width, // <-- CHANGE 2: Use border_width variable
+                        depth, InputOutput, visual,
+                        CWOverrideRedirect | CWBackPixel | CWColormap |  CWEventMask | CWBorderPixel, &swa);
+    if (border_width) // <-- CHANGE 3: Add explicit border color setting
+        XSetWindowBorder(dpy, win, scheme[SchemeSel][ColBg].pixel);
+    XSetClassHint(dpy, win, &ch);
 
 	/* input methods */
 	if ((xim = XOpenIM(dpy, NULL, NULL, NULL)) == NULL)
@@ -982,6 +989,8 @@ main(int argc, char *argv[])
 			colors[SchemeSel][ColFg] = argv[++i];
 		else if (!strcmp(argv[i], "-w"))   /* embedding window id */
 			embed = argv[++i];
+		else if (!strcmp(argv[i], "-bw"))
+			border_width = atoi(argv[++i]); /* border width */
 		else
 			usage();
 

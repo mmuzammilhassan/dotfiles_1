@@ -1,4 +1,4 @@
-diff --git a/config.def.h b/config.def.h
+diff --git a/config.h b/config.def.h c/config.def.h
 index 1edb647..dd3eb31 100644
 --- a/config.def.h
 +++ b/config.def.h
