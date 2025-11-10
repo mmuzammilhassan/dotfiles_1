@@ -17,7 +17,7 @@ vim.opt.conceallevel = 0                                -- so that `` is visible
 vim.opt.fileencoding = "utf-8"                          -- the encoding written to a file
 vim.opt.hlsearch = true                                 -- highlight all matches on previous search pattern
 vim.opt.ignorecase = true                               -- ignore case in search patterns
-vim.opt.mouse = "a"                                     -- allow the mouse to be used in neovim
+--oim.opt.mouse = "a"                                     -- allow the mouse to be used in neovim
 vim.opt.pumheight = 10                                  -- pop up menu height
 vim.opt.showmode = false                                -- we don't need to see things like -- INSERT -- anymore
 vim.opt.showtabline = 0                                 -- always show tabs
@@ -54,7 +54,7 @@ vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applicati
 vim.opt.title = true              -- set the title of window to the value of the titlestring
 vim.opt.confirm = true            -- confirm to save changes before exiting modified buffer
 vim.opt.fillchars = { eob = " " } -- change the character at the end of buffer
--- vim.opt.winborder = "rounded" -- solid
+-- vim.opt.winborder = "rounded" -- solid, single
 vim.opt.winborder = "single"      -- https://neovim.io/doc/user/options.html#'winborder'
 
 --Source: :help 'statuscolumn' in Neovim

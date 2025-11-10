@@ -23,13 +23,19 @@ return {
                 -- / /_   )__)   )___/  ) _ (   \  /   )   /
                 --(____) (____) (__)   (_) (_)  (__)  (_)\_)]],
                 header = 
+--  ____  ____  ____  _   _  _  _  ____ 
+-- (_   )( ___)(  _ \( )_( )( \/ )(  _ \
+--  / /_  )__)  )___/ ) _ (  \  /  )   /
+-- (____)(____)(__)  (_) (_) (__) (_)\_)
+--Welcome, ZEPHYR
 [[
- ____  ____  ____  _   _  _  _  ____ 
-(_   )( ___)(  _ \( )_( )( \/ )(  _ \
- / /_  )__)  )___/ ) _ (  \  /  )   /
-(____)(____)(__)  (_) (_) (__) (_)\_)
- 
-Welcome back, ZEPHYR
+███████╗███████╗██████╗ ██╗  ██╗██╗   ██╗██████╗ 
+╚══███╔╝██╔════╝██╔══██╗██║  ██║╚██╗ ██╔╝██╔══██╗
+  ███╔╝ █████╗  ██████╔╝███████║ ╚████╔╝ ██████╔╝
+ ███╔╝  ██╔══╝  ██╔═══╝ ██╔══██║  ╚██╔╝  ██╔══██╗
+███████╗███████╗██║     ██║  ██║   ██║   ██║  ██║
+╚══════╝╚══════╝╚═╝     ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
+
 https://github.com/mmuzammilhassan]],
             },
             sections = {
@@ -73,8 +79,9 @@ https://github.com/mmuzammilhassan]],
     keys = function()
         local Snacks = require("snacks")
         return {
-            -- Top Pickers & Explorer
-            { "<leader>se", function() Snacks.picker.spelling() end,                                   desc = "Smart Find Files" },
+
+            -- TOP PICKERS & EXPLORER
+            { "<leader>se", function() Snacks.picker.spelling() end,                                     desc = "spelling" },
             { "<leader><space>", function() Snacks.picker.smart() end,                                   desc = "Smart Find Files" },
             { "<leader>,",       function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
             { "<leader>/",       function() Snacks.picker.grep() end,                                    desc = "Grep" },
@@ -82,7 +89,7 @@ https://github.com/mmuzammilhassan]],
             --          { "<leader>n",       function() Snacks.picker.notifications() end,                           desc = "Notification History" },
             { "<leader>e",       function() Snacks.explorer() end,                                       desc = "File Explorer" },
 
-            -- find
+            -- FIND
             --            { "<leader>fb",      function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
             { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
             { "<leader>ff",      function() Snacks.picker.files() end,                                   desc = "Find Files" },
@@ -105,12 +112,12 @@ https://github.com/mmuzammilhassan]],
             { "<leader>sg",      function() Snacks.picker.grep() end,                                    desc = "Grep" },
             --            { "<leader>sw",      function() Snacks.picker.grep_word() end,                               desc = "Visual selection or word", mode = { "n", "x" } },
 
-            --           -- search
+            -- SEARCH
             --            { '<leader>s"',      function() Snacks.picker.registers() end,                               desc = "Registers" },
-                        { '<leader>s/',      function() Snacks.picker.search_history() end,                          desc = "Search History" },
+            { '<leader>s/',      function() Snacks.picker.search_history() end,                          desc = "Search History" },
             --            { "<leader>sa",      function() Snacks.picker.autocmds() end,                                desc = "Autocmds" },
             --            { "<leader>sb",      function() Snacks.picker.lines() end,                                   desc = "Buffer Lines" },
-                        { "<leader>sc",      function() Snacks.picker.command_history() end,                         desc = "Command History" },
+            { "<leader>sc",      function() Snacks.picker.command_history() end,                         desc = "Command History" },
             --            { "<leader>sC",      function() Snacks.picker.commands() end,                                desc = "Commands" },
             --            { "<leader>sd",      function() Snacks.picker.diagnostics() end,                             desc = "Diagnostics" },
             --            { "<leader>sD",      function() Snacks.picker.diagnostics_buffer() end,                      desc = "Buffer Diagnostics" },

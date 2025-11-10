@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 MODE=$1   # pass "dark" or "light" when running the script
 
 if [ "$MODE" = "dark" ]; then
@@ -22,7 +21,7 @@ elif [ "$MODE" = "light" ]; then
 fi
 
 # Refresh the status bar
-xdotool key super+F5
+ xdotool key "super+F5"
 
 # Dvorak remap
 xmodmap-dvorak &

@@ -169,6 +169,7 @@ config.set('colors.webpage.darkmode.enabled', True)
 # Disable dark mode on YouTube/whatstapp
 config.set('colors.webpage.darkmode.enabled', False, 'https://www.youtube.com/*')
 config.set('colors.webpage.darkmode.enabled', False, 'https://web.whatsapp.com')
+config.set('colors.webpage.darkmode.enabled', False, 'https://github.com/*')
 
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')

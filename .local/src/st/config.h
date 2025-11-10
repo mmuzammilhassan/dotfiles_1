@@ -16,7 +16,7 @@ static int linespacing = 4;
 static const int defaultlinespacing = 4;
 static const int maxlinespacing = 20;  // Optional upper limit
 
-static int borderpx = 8; // this inner space like padding
+static int borderpx = 4; // 8 this inner space like padding
 /*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
@@ -117,7 +117,7 @@ static int allowbold =1;
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.7; //0.7;
+float alpha = 0.8; //0.7;
 float alphaOffset = 0.0;
 float alphaUnfocus;
 

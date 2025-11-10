@@ -1,33 +1,27 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 10;        /* 4 gaps between windows */
+static const unsigned int borderpx  = 3;        /* 2 border pixel of windows */
+static const unsigned int gappx     = 20;       /* 4 gaps between windows */
 static const unsigned int snap      = 8;        /* 32 snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-                                        /* this is bar font*/
+                                    /* this is bar font*/
 static const char *fonts[]          = { "FiraCode:medium:size=9", "JoyPixels:pixelsize=18:antialias=true:autohint=true"};
-                                        /* this is dmenu font*/
+                                    /* this is dmenu font*/
 static const char dmenufont[]       = "FiraCode:medium:size=18";
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
+static char normbgcolor[]           ="#222222";  // "#0a0410";  bar bg color
+static char normbordercolor[]       ="#444444";  // "#798aaa";  unactive border
+static char normfgcolor[]           ="#bbbbbb";  // "#9ccfd8";  bar fg color
+static char selfgcolor[]            ="#eeeeee";  // "#9ccfd8";  selected color and left dot color
+static char selbordercolor[]        ="#005577";  // "#00ffff"; 
+static char selbgcolor[]            ="#005577";  // "#9ccfd8"; 
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
-       /*               fg           bg           border   */
-       /*[SchemeNorm] = { norm_fg, norm_bg, norm_border },
-       [SchemeSel]  = { sel_fg,  sel_bg,  sel_border  },
-};
-*/
-
 
 /* tagging */
 //static const char *tags[] = { "1","2","3", "4", "5", "6", "7", "8", "9"};
@@ -140,4 +134,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
