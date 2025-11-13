@@ -2,7 +2,7 @@
 /* Default settings; can be overriden by command line. */
 
 /* Size of the window border */
-static unsigned int border_width = 4;
+static unsigned int border_width = 2;
 
 static int topbar = 0;                      /* -b  option; if 0, dmenu appears at bottom     */
 /* -fn option overrides fonts[0]; default X11 font or font set */

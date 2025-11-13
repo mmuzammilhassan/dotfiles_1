@@ -63,6 +63,31 @@ vim.keymap.set("n", "YY", "va{Vy", opts)
 --vim.keymap.set({ "n", "x", "o" }, "H", "^", opts)
 --vim.keymap.set({ "n", "x", "o" }, "L", "g_", opts)
 
+-- my custom snack.explorer keybinds/logic
+-- 1. Open the explorer if it's closed.
+-- 2. Focus the explorer if you're in another split.
+-- 3. Close the explorer if you're already in it.
+vim.keymap.set("n", "<leader>e", function()
+    -- Check if any snack explorer pickers are already open
+    local explorer_pickers = require("snacks").picker.get({ source = "explorer" })
+
+    if #explorer_pickers > 0 then
+        -- If an explorer is open, get the first one
+        local picker = explorer_pickers[1]
+
+        if picker:is_focused() then
+            -- If you are already in the explorer, close it.
+            picker:close()
+        else
+            -- If the explorer is open but not focused, focus it.
+            picker:focus()
+        end
+    else
+        -- If no explorer is open, open a new one.
+        require("snacks").picker.explorer()
+    end
+end, { desc = "Toggle/Focus Snack Explorer" })
+
 -- Navigate buffers
 --vim.keymap.set("n", "<Right>", ":bnext<CR>", opts)
 --vim.keymap.set("n", "<Left>", ":bprevious<CR>", opts)
@@ -155,7 +180,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<cr>", { silent = true })
 
 --vim.keymap.set( "n", "<leader>ee", "oif err != nil {<cr>}<esc>oreturn err<esc>")
 
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/dotfiles/.config/nvim/lua/xamiboi/lazy.lua<cr>");
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/dotfiles_1/.config/nvim/lua/xamiboi/lazy.lua<cr>");
 vim.keymap.set("n", "<leader>mr", "<cmd>cellularautomaton make_it_rain<cr>");
 
 --vim.keymap.set("n", "<leader><leader>", function()

@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* 2 border pixel of windows */
-static const unsigned int gappx     = 20;       /* 4 gaps between windows */
+static const unsigned int gappx     = 10;       /* 4 gaps between windows */
 static const unsigned int snap      = 8;        /* 32 snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 0;        /* 0 means no bar */
@@ -27,7 +27,7 @@ static char *colors[][3] = {
 //static const char *tags[] = { "1","2","3", "4", "5", "6", "7", "8", "9"};
 //static const char *tags[] = { "1t","2dr","3w", "4di", "5", "6", "7q", "8f", "9ch"};
 //static const char *tags[] = { "1t","2q","3f", "4", "5", "6", "7c", "8", "9"};
-static const char *tags[] = { "", "", "", "", "", "", };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "", };
 // static const char *tags[] = { " ", " ","",  " ", " ", " " };
 
 static const Rule rules[] = {
@@ -41,9 +41,10 @@ static const Rule rules[] = {
     { "Lutris",             NULL,     NULL,           0,         1,          0,           0,        -1 },
     { "qutebrowser",   		NULL,     NULL,           1 << 0,    0,          0,          -1,        -1 },
     { "Chromium",   	    NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
-    { "Brave",   	    NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
+    { "Brave",   	        NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
     { "firefox",   		    NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
     //{ "code",               NULL,     NULL,           1 << 4,    0,          0,          -1,        -1 },
+    { "beekeeper-studio",   		    NULL,     NULL,           1 << 7,    0,          0,          -1,        -1 },
     { "St",                 NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,                 NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };

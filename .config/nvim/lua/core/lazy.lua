@@ -95,7 +95,7 @@ require("lazy").setup({
     -- Optional (commented out)
     -- { "nvim-treesitter/playground", enabled = false },
     -- { "tpope/vim-fugitive", enabled = false },
-    -- { "christoomey/vim-tmux-navigator", enabled = false },
+    --{ "christoomey/vim-tmux-navigator", enabled = false },
     -- { "wakatime/vim-wakatime", enabled = false },
     -- { "kdheepak/lazygit.nvim", enabled = false },
     -- {
