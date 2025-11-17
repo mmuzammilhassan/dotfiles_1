@@ -27,7 +27,9 @@ static char *colors[][3] = {
 //static const char *tags[] = { "1","2","3", "4", "5", "6", "7", "8", "9"};
 //static const char *tags[] = { "1t","2dr","3w", "4di", "5", "6", "7q", "8f", "9ch"};
 //static const char *tags[] = { "1t","2q","3f", "4", "5", "6", "7c", "8", "9"};
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", };
+//static const char *tags[] = { "", "", "", "", "", "", "", "", "", };
+static const char *tags[] = { " ", "", "", " ", "", "", " ", };
+//static const char *tags[] = { "", "", "", "", "", "", "", };
 // static const char *tags[] = { " ", " ","",  " ", " ", " " };
 
 static const Rule rules[] = {
@@ -41,10 +43,10 @@ static const Rule rules[] = {
     { "Lutris",             NULL,     NULL,           0,         1,          0,           0,        -1 },
     { "qutebrowser",   		NULL,     NULL,           1 << 0,    0,          0,          -1,        -1 },
     { "Chromium",   	    NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
-    { "Brave",   	        NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
+    //{ "Brave",   	        NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
     { "firefox",   		    NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
     //{ "code",               NULL,     NULL,           1 << 4,    0,          0,          -1,        -1 },
-    { "beekeeper-studio",   		    NULL,     NULL,           1 << 7,    0,          0,          -1,        -1 },
+    // { "beekeeper-studio",   NULL,     NULL,           1 << 5,    0,          0,          -1,        -1 },
     { "St",                 NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,                 NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
@@ -80,6 +82,17 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+    // argument index is important make sure it is correct like 1,2,3 counting Wise
+	TAGKEYS(                        XK_1,                      0)
+	TAGKEYS(                        XK_2,                      1)
+	TAGKEYS(                        XK_3,                      2)
+	TAGKEYS(                        XK_4,                      3)
+	TAGKEYS(                        XK_7,                      4)
+	TAGKEYS(                        XK_8,                      5)
+	TAGKEYS(                        XK_9,                      6)
+//	TAGKEYS(                        XK_8,                      7)
+//  TAGKEYS(                        XK_9,                      8)
+
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -107,15 +120,6 @@ static Key keys[] = {
 	{ MODKEY,			            XK_equal,  setgaps, 	   {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_equal,  setgaps, 	   {.i =  0 } },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,		        XK_q,      quit,           {0} },
 };
 
