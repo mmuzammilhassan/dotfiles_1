@@ -79,6 +79,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont}; // that one is old
 static const char *dmenucmd[] = { "dmenu_run", "-c", "-l", "10", NULL};
 static const char *termcmd[]  = { "st", NULL };
+/* this is for slock */
+static const char *slockcmd[] = { "slock", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -121,6 +123,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		        XK_equal,  setgaps, 	   {.i =  0 } },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 	{ MODKEY|ShiftMask,		        XK_q,      quit,           {0} },
+    { MODKEY,		                XK_s,	    spawn,	       {.v = slockcmd } },
 };
 
 /* button definitions */

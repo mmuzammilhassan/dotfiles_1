@@ -141,8 +141,8 @@ vim.api.nvim_create_autocmd("FocusGained", {
     callback = function()
         timer:stop()
         timer:start(10, 0, vim.schedule_wrap(function()
-            vim.wo.relativenumber = true
             vim.wo.number = true
+            vim.wo.relativenumber = true
             --vim.wo.cursorline = true
             vim.diagnostic.config({
                 virtual_text = true,
@@ -178,8 +178,8 @@ vim.api.nvim_create_autocmd("FocusLost", {
   callback = function()
     timer:stop()
     timer:start(10, 0, vim.schedule_wrap(function()
-      vim.wo.relativenumber = false
       vim.wo.number = false
+      vim.wo.relativenumber = false
       --vim.wo.cursorline = false
             vim.diagnostic.config({
                 virtual_text = false,

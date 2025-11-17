@@ -5,7 +5,7 @@ networks:
 
 services:
   # Shared MariaDB
-  db:
+  db: # this is the host = "db"
     image: mariadb:11
     container_name: infra_db
     restart: always
@@ -15,8 +15,8 @@ services:
       - ../storage/mariadb_data:/var/lib/mysql
 #      - ../gio/storage/mariadb_data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: myproject
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # <-- Reads from .env
+#      MYSQL_DATABASE: myproject
     networks:
       - app_net
 
