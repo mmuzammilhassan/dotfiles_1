@@ -118,6 +118,7 @@ vim.keymap.set("n", ",4",
 --  * PROJECT:   Client Project Name
 --  * AUTHOR:    Muzammil Hassan (aka Zephyr)
 --  * CONTACT:   m.muzammil.hassan.dev@gmail.com
+--  * CONTACT:   mmuzammilhassan24@gmail.com
 --  *
 --  * COPYRIGHT © 2025 Muzammil Hassan. All rights reserved.
 --  *
